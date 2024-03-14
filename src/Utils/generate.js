@@ -159,10 +159,71 @@ function generateDate(format) {
     }
 }
 
+function generateUUID(type) {
+    switch (type) {
+        case 'v1':
+            return generateUUIDv1();
+        case 'v4':
+            return generateUUIDv4();
+        case 'v7':
+            return generateUUIDv7();
+        case 'ulid':
+            return generateULID();
+        default:
+            return 'Tipo de UUID inválido';
+    }
+}
+
+function generateUUIDv1() {
+    // UUID v1
+    let timestamp = Date.now();
+    const uuid = 'xxxxxxxx-xxxx-1xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = (timestamp + Math.random() * 16) % 16 | 0;
+        timestamp = Math.floor(timestamp / 16);
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+    return uuid;
+}
+
+function generateUUIDv4() {
+    // UUID v4
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
+function generateUUIDv7() {
+    // UUID v7
+    let timestamp = Date.now();
+    const uuid = 'xxxxxxxx-xxxx-7xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = (timestamp + Math.random() * 16) % 16 | 0;
+        timestamp = Math.floor(timestamp / 16);
+        return (c === 'x' ? r : (r & 0x3 | 0x7)).toString(16);
+    });
+    return uuid;
+}
+
+function generateULID() {
+    // ULID
+    const chars = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+    let ulid = '';
+    for (let i = 0; i < 26; i++) {
+        if (i === 14) {
+            ulid += '1'; // Timestamp component
+        } else {
+            ulid += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+    }
+    return ulid;
+}
+
 export { 
         generateName, 
         generateEmail, 
         generateCompany,
         generatePhoneNumber,
-        generateDate
+        generateDate,
+        generateUUID
     }
