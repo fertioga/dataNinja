@@ -93,10 +93,10 @@
 
       <!-- FINANCIAL -->
       <div class="row">
-      <div class="col">
-        <hr>
-        Financial:
-      </div>
+        <div class="col">
+          <hr>
+          Financial:
+        </div>
       </div>
       <!-- line -->
       <div class="row">
@@ -111,6 +111,20 @@
       <div class="row">
         <div class="col">
           <CreditCardCvv :eventBtClicked="btClicked" @event_credit_card_cvv="generate_data"></CreditCardCvv>
+        </div>
+      </div>
+
+      <!-- DATE -->
+      <div class="row">
+        <div class="col">
+          <hr>
+          Date:
+        </div>
+      </div>
+      <!-- line -->
+      <div class="row">
+        <div class="col">
+          <DateBr :eventBtClicked="btClicked" @event_date_br="generate_data"></DateBr>
         </div>
       </div>
      
@@ -187,6 +201,7 @@
   import CreditCardValidateDate from './CreditCardValidateDate.vue';
   import CreditCardCvv from './CreditCardCvv.vue';
   import Website from './Website.vue';
+  import DateBr from './DateBr.vue';
 
   export default {
     components: {
@@ -207,7 +222,8 @@
       CreditCard,
       CreditCardValidateDate,
       CreditCardCvv,
-      Website
+      Website,
+      DateBr
     },
     name: 'GeneratorsData',
     data() {
