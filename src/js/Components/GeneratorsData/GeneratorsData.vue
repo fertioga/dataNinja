@@ -130,6 +130,12 @@
           <DateUs :eventBtClicked="btClicked" @event_date_us="generate_data"></DateUs>
         </div>
       </div>
+      <!-- line -->
+      <div class="row">
+        <div class="col">
+          <DateDb :eventBtClicked="btClicked" @event_date_db="generate_data"></DateDb>
+        </div>
+      </div>
      
       <div class="row">
         <div class="col">
@@ -206,6 +212,7 @@
   import Website from './Website.vue';
   import DateBr from './DateBr.vue';
   import DateUs from './DateUs.vue';
+  import DateDb from './DateDb.vue';
 
   export default {
     components: {
@@ -228,7 +235,8 @@
       CreditCardCvv,
       Website,
       DateBr,
-      DateUs
+      DateUs,
+      DateDb
     },
     name: 'GeneratorsData',
     data() {
