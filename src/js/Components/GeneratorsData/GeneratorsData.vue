@@ -135,6 +135,9 @@
         <div class="col">
           <DateDb :eventBtClicked="btClicked" @event_date_db="generate_data"></DateDb>
         </div>
+        <div class="col">
+          <DateTimestamp :eventBtClicked="btClicked" @event_date_timestamp="generate_data"></DateTimestamp>
+        </div>
       </div>
      
       <div class="row">
@@ -213,6 +216,7 @@
   import DateBr from './DateBr.vue';
   import DateUs from './DateUs.vue';
   import DateDb from './DateDb.vue';
+  import DateTimestamp from './DateTimestamp.vue';
 
   export default {
     components: {
@@ -236,7 +240,8 @@
       Website,
       DateBr,
       DateUs,
-      DateDb
+      DateDb,
+      DateTimestamp
     },
     name: 'GeneratorsData',
     data() {

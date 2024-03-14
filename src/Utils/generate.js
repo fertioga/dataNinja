@@ -141,7 +141,7 @@ function generatePhoneNumber(format) {
 }
 
 function generateDate(format) {
-    
+
     const today = new Date();
     const futureDate = new Date(today.getTime() + Math.random() * (365 * 24 * 60 * 60 * 1000 * 10)); // Adiciona até 10 anos no futuro
 
@@ -152,6 +152,8 @@ function generateDate(format) {
             return `${(futureDate.getMonth() + 1).toString().padStart(2, '0')}/${futureDate.getDate().toString().padStart(2, '0')}/${futureDate.getFullYear()}`;
         case 'DB':
             return `${futureDate.getFullYear()}-${(futureDate.getMonth() + 1).toString().padStart(2, '0')}-${futureDate.getDate().toString().padStart(2, '0')}`;
+        case 'TIMESTAMP':
+            return today.getTime();
         default:
             return 'Formato inválido';
     }
