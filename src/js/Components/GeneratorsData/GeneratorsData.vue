@@ -85,6 +85,11 @@
           <CNPJ :eventBtClicked="btClicked" @event_cnpj="generate_data"></CNPJ>
         </div>
       </div>
+      <div class="row">
+        <div class="col">
+          <Website :eventBtClicked="btClicked" @event_website="generate_data"></Website>
+        </div>
+      </div>
 
       <!-- FINANCIAL -->
       <div class="row">
@@ -98,8 +103,16 @@
         <div class="col">
           <CreditCard :eventBtClicked="btClicked" @event_credit_card="generate_data"></CreditCard>
         </div>
+        <div class="col">
+          <CreditCardValidateDate :eventBtClicked="btClicked" @event_credit_card_validate_date="generate_data"></CreditCardValidateDate>
+        </div>
       </div>
-
+      <!-- line -->
+      <div class="row">
+        <div class="col">
+          <CreditCardCvv :eventBtClicked="btClicked" @event_credit_card_cvv="generate_data"></CreditCardCvv>
+        </div>
+      </div>
      
       <div class="row">
         <div class="col">
@@ -171,6 +184,9 @@
   import CNH from './CNH.vue';
   import RG from './RG.vue';
   import CreditCard from './CreditCard.vue';
+  import CreditCardValidateDate from './CreditCardValidateDate.vue';
+  import CreditCardCvv from './CreditCardCvv.vue';
+  import Website from './Website.vue';
 
   export default {
     components: {
@@ -188,7 +204,10 @@
       PassportUs,
       CNH,
       RG,
-      CreditCard
+      CreditCard,
+      CreditCardValidateDate,
+      CreditCardCvv,
+      Website
     },
     name: 'GeneratorsData',
     data() {

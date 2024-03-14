@@ -13,8 +13,7 @@ import { generateCompany } from '/src/Utils/generate.js';
 export default {
     data() {
         return {
-            firstNames: [],
-            lastNames: [],
+            name: 'company',
             tags: [
                     'company',
                     'empresa',
@@ -75,18 +74,18 @@ export default {
 
                 // add the company to the dataStore
                 this.dataStore.add(
-                    "company",
+                    this.name,
                     company
                 );
 
                 return {
-                        "field": "company",
+                        "field": this.name,
                         "tags": this.tags,
                         "value": company
                     }
                     
             } catch (error) {
-                console.error('Error loading names:', error);
+                console.error('Error loading companies:', error);
             }
             
         }
