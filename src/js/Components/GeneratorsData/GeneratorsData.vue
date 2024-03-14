@@ -152,6 +152,9 @@
         <div class="col">
           <UUID_v1 :eventBtClicked="btClicked" @event_uuid_v1="generate_data"></UUID_v1>
         </div>
+        <div class="col">
+          <UUID_v4 :eventBtClicked="btClicked" @event_uuid_v4="generate_data"></UUID_v4>
+        </div>
       </div>
      
       <div class="row">
@@ -232,6 +235,7 @@
   import DateDb from './DateDb.vue';
   import DateTimestamp from './DateTimestamp.vue';
   import UUID_v1 from './UUID_v1.vue';
+  import UUID_v4 from './UUID_v4.vue';
 
   export default {
     components: {
@@ -257,7 +261,8 @@
       DateUs,
       DateDb,
       DateTimestamp,
-      UUID_v1
+      UUID_v1,
+      UUID_v4
     },
     name: 'GeneratorsData',
     data() {
