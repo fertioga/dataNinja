@@ -160,7 +160,7 @@ function generateDate(format) {
 }
 
 function generateUUID(type) {
-    switch (type) {
+    switch (type.toLowerCase()) {
         case 'v1':
             return generateUUIDv1();
         case 'v4':
