@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Data Ninja",
+  "version": "1.0.0",
+  "description": "Boost your productivity with this essential Chrome plugin designed for developers, testers, and POs. Simplify testing tasks and streamline your workflow with features tailored to your everyday needs. Generate realistic fake data for form testing, convert data formats effortlessly, format JSON with ease, pick colors seamlessly, and add random images to enhance your testing experience.",
+  "permissions": [
+    "sidePanel", "activeTab", "scripting", "storage"
+  ],
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "action": {
+    "default_title": "Click to open panel"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScripts.js"]
+    }
+  ]
+}
