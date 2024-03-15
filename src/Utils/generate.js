@@ -219,11 +219,36 @@ function generateULID() {
     return ulid;
 }
 
+async function generateLoremIpsumParagraph() {
+    try {
+        // Faz uma solicitação GET para a API Lorem Ipsum com o número de palavras desejado
+        const response = await fetch(`https://hipsum.co/api/?type=hipster-centric&paras=5&sentences=10`);
+
+        // Verifica se a solicitação foi bem-sucedida
+        if (!response.ok) {
+            throw new Error('Erro ao acessar a API Lorem Ipsum');
+        }
+
+        // Converte a resposta para JSON
+        const data = await response.json();
+
+        // Retorna o parágrafo gerado
+        const result = data[0];
+
+        return result;
+
+    } catch (error) {
+        console.error('Ocorreu um erro:', error);
+        return null;
+    }
+}
+
 export { 
         generateName, 
         generateEmail, 
         generateCompany,
         generatePhoneNumber,
         generateDate,
-        generateUUID
+        generateUUID,
+        generateLoremIpsumParagraph
     }

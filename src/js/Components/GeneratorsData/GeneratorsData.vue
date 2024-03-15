@@ -165,6 +165,12 @@
           <UUID_ULID :eventBtClicked="btClicked" @event_ulid="generate_data"></UUID_ULID>
         </div>
       </div>
+      <!-- line -->
+      <div class="row">
+        <div class="col">
+          <LorenIpsum :eventBtClicked="btClicked" @event_lorenipsum="generate_data"></LorenIpsum>
+        </div>
+      </div>
      
       <div class="row">
         <div class="col">
@@ -247,6 +253,7 @@
   import UUID_v4 from './UUID_v4.vue';
   import UUID_v7 from './UUID_v7.vue';
   import UUID_ULID from './UUID_ULID.vue';
+  import LorenIpsum from './LorenIpsum.vue';
 
   export default {
     components: {
@@ -275,7 +282,8 @@
       UUID_v1,
       UUID_v4,
       UUID_v7,
-      UUID_ULID
+      UUID_ULID,
+      LorenIpsum
     },
     name: 'GeneratorsData',
     data() {
