@@ -254,6 +254,24 @@ function generateSecurePassword() {
     return password;
 }
 
+async function generatePersonImage() {
+    try {
+        // Faz uma solicitação GET this person does not exist
+        const response = await fetch(`https://thispersondoesnotexist.com/`);
+
+        // Verifica se a solicitação foi bem-sucedida
+        if (!response.ok) {
+            throw new Error('Erro ao acessar a API Lorem Ipsum');
+        }
+
+        return response['url'];
+
+    } catch (error) {
+        console.error('Ocorreu um erro:', error);
+        return null;
+    }
+}
+
 export { 
         generateName, 
         generateEmail, 
@@ -262,5 +280,6 @@ export {
         generateDate,
         generateUUID,
         generateLoremIpsumParagraph,
-        generateSecurePassword
+        generateSecurePassword,
+        generatePersonImage
     }
