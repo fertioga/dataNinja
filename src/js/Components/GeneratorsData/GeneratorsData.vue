@@ -34,6 +34,12 @@
           <Email :eventBtClicked="btClicked" @event_email="generate_data"></Email>
         </div>
       </div>
+      <!-- line  -->
+      <div class="row">
+        <div class="col">
+          <Password :eventBtClicked="btClicked" @event_password="generate_data"></Password>
+        </div>
+      </div>
 
       <!-- IDENTIFICATION -->
       <div class="row">
@@ -170,9 +176,7 @@
         <div class="col">
           <LorenIpsum :eventBtClicked="btClicked" @event_lorenipsum="generate_data"></LorenIpsum>
         </div>
-        <div class="col">
-          <Password :eventBtClicked="btClicked" @event_password="generate_data"></Password>
-        </div>
+        
       </div>
      
       <div class="row">
