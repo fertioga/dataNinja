@@ -243,6 +243,17 @@ async function generateLoremIpsumParagraph() {
     }
 }
 
+function generateSecurePassword() {
+    const length = Math.floor(Math.random() * (20 - 8 + 1)) + 8; // Entre 8 e 20 caracteres
+    const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+=[]{}|;:,.<>?"; // Caracteres permitidos
+    let password = "";
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        password += charset[randomIndex];
+    }
+    return password;
+}
+
 export { 
         generateName, 
         generateEmail, 
@@ -250,5 +261,6 @@ export {
         generatePhoneNumber,
         generateDate,
         generateUUID,
-        generateLoremIpsumParagraph
+        generateLoremIpsumParagraph,
+        generateSecurePassword
     }

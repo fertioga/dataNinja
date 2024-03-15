@@ -170,6 +170,9 @@
         <div class="col">
           <LorenIpsum :eventBtClicked="btClicked" @event_lorenipsum="generate_data"></LorenIpsum>
         </div>
+        <div class="col">
+          <Password :eventBtClicked="btClicked" @event_password="generate_data"></Password>
+        </div>
       </div>
      
       <div class="row">
@@ -254,6 +257,7 @@
   import UUID_v7 from './UUID_v7.vue';
   import UUID_ULID from './UUID_ULID.vue';
   import LorenIpsum from './LorenIpsum.vue';
+  import Password from './Password.vue';
 
   export default {
     components: {
@@ -283,7 +287,8 @@
       UUID_v4,
       UUID_v7,
       UUID_ULID,
-      LorenIpsum
+      LorenIpsum,
+      Password
     },
     name: 'GeneratorsData',
     data() {
