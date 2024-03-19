@@ -1,5 +1,5 @@
   <template>
-    <div class="container">
+    <div class="container animate__animated animate__fadeInLeft">
 
       <PersonGroup :eventBtClicked="btClicked" @event_data="generate_data"></PersonGroup>
 
@@ -26,9 +26,9 @@
             <div class="card w-100">
               <div class="card-body">
                 <div class="card-text" id="content_result">
-                    <p v-if="result_data_generate.length > 0" v-for = "(result, index) in result_data_generate" :key="index" @click="copyIndividualContent(result, (result.field).concat(index))" style="cursor: pointer;">
+                    <p v-if="result_data_generate.length > 0" class="class_p_line" v-for = "(result, index) in result_data_generate" :key="index" :id="'p_line_' + index" @click="copyIndividualContent(result, (result.field).concat(index))" style="cursor: pointer;">
                         
-                        <font-awesome-icon icon="arrow-left" @click="searchAndWrite(result)" />
+                        <font-awesome-icon icon="arrow-left" @click="searchAndWrite(result, 'p_line_' + index)" />
                         {{ result.field }}: 
                         {{ result.value }}
 
@@ -90,7 +90,8 @@
         result_data_generate: [],
         iconVisible: null,
         content_copied: null,
-        dataStore: dataStore()
+        dataStore: dataStore(),
+        classAnimateSlide: ''
       };
     },
     methods: {
@@ -114,6 +115,9 @@
 
         // set the btClicked to true
         this.btClicked = true;
+
+        // Set the class to animate the result
+        this.classAnimateSlide = "animate__backOutLeft"
 
         // Reset the array
         this.result_data_generate = []; 
@@ -168,8 +172,11 @@
        * in the file contentScript.js to search the field 
        * and write the value in the web page
        */
-      searchAndWrite(parameter){
-        
+      searchAndWrite(parameter, p_field = null){
+
+        // Set the field to animate 
+        this.putAninmationSend(p_field);
+
         chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
 
           if (tabs && tabs.length > 0) {
@@ -192,8 +199,31 @@
 
       },
 
+      /**
+     * Put an animation in the field that was sent
+     * @param {string} p_field
+     */
+      putAninmationSend(p_field){
 
-    }
+        let elements = null;
+
+        if (p_field != null) {
+
+          elements = document.getElementById(p_field);       
+          elements.classList.add('animate__animated', 'animate__bounceOutLeft'); 
+          setTimeout(() => { elements.classList.remove('animate__animated', 'animate__bounceOutLeft'); }, 1000);
+
+        }else{
+
+          elements = document.querySelectorAll('.class_p_line');
+          elements.forEach(element => {
+              element.classList.add('animate__animated', 'animate__bounceOutLeft');
+              setTimeout(() => { element.classList.remove('animate__animated', 'animate__bounceOutLeft'); }, 1000);
+          });
+
+        }
+      }
+    }    
   };
   </script>
   
