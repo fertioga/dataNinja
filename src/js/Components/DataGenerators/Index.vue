@@ -1,5 +1,5 @@
   <template>
-    <div class="container animate__animated animate__fadeInLeft">
+    <div class="container">
 
       <div class="d-flex align-items-start">
 
@@ -40,14 +40,6 @@
 
         </div>
       </div>    
-
-     
-
-      
-
-      
-
-      
      
       <div class="row">
         <div class="col">
@@ -146,6 +138,9 @@
        * Set the btClicked to true
        */
       btIsClicked() {
+        
+        // set Loading true
+        this.dataStore.setLoadingDuring(2000);
 
         // clear store
         this.dataStore.clear();
@@ -167,6 +162,7 @@
        * @param {object} data
        */
        generate_data(data) {
+          // push the result to the array
           this.result_data_generate.push(data);
       },
 
