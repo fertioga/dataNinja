@@ -67,10 +67,11 @@ export default {
             // Converte o CSR para formato PEM
             const csrPem = forge.pki.certificationRequestToPem(csr);
 
-            this.dataStore.add(
-                this.name,
-                csrPem
-            );
+            // Adiciona o CSR ao DataStore
+            // this.dataStore.add(
+            //     this.name,
+            //     csrPem
+            // );
 
             return {
                 "field": this.name,
