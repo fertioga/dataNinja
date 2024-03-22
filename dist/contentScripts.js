@@ -6,21 +6,28 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const valueToInject = request.parameter.value // value to insert into field
         
         // find and write into input fields
-        injectValueIntoInputField(tagToFind, valueToInject);
+        const textField = injectValueIntoInputField(tagToFind, valueToInject);
 
         // find and write into textarea fields
-        injectValueIntoAllTextareaField(valueToInject);        
+        const textareaField = injectValueIntoAllTextareaField(valueToInject);
+        
+        console.log("textField: ", textField, " textareaField: ", textareaField)
+
+        // if textField or textareaField is true, return success
+        sendResponse({ 
+                        success: (textField || textareaField)? true : false
+                    });
     }
   });
 
   /** 
    * @param {string[]} tagToFind
    * @param {string} valueToInject
-   * @returns {void}
+   * @returns {boolean}
    */
 function injectValueIntoInputField(tagToFind, valueToInject) {
         
-    const MIN_SIMILARITY = 20; // Similarity percentage to inject value into field
+    const MIN_SIMILARITY = 30; // Similarity percentage to inject value into field
     const inputs = document.querySelectorAll('input:not([type="button"])'); // List all inputs of page
 
     // Iterate to find fields
@@ -46,15 +53,17 @@ function injectValueIntoInputField(tagToFind, valueToInject) {
 
                 field.value = valueToInject;
 
-                // console.log("Injetado valor no campo: ", field.id, 
-                //             " com a tag: ", tagCleaned, 
-                //             " com similaridade de: ", "ID: ",cleanedFieldId,": ", similarityId, 
-                //             " e ", cleanedFieldName, ": ", similarityName)
+                console.log("Injetado valor no campo: ", field.id, 
+                            " com a tag: ", tagCleaned, 
+                            " com similaridade de: ", "ID: ",cleanedFieldId,": ", similarityId, 
+                            " e ", cleanedFieldName, ": ", similarityName)
 
-                break; // Para de verificar as outras tags para este campo
+                return true; // return to stop iteration
             }
         }
     }
+
+    return false;
 }
 
 /**
@@ -68,8 +77,12 @@ function injectValueIntoAllTextareaField(valueToInject) {
         for (const field of textAreas) { // Iterate to find 
 
             field.value = valueToInject; // put value into all textarea
+
+            return true; // return to stop iteration
         
         }
+
+    return false;
 }
 
 function cleanString(str) {

@@ -26,9 +26,9 @@
             <div class="card w-100">
               <div class="card-body">
                 <div class="card-text" id="content_result">
-                    <p v-if="result_data_generate.length > 0" class="class_p_line" v-for = "(result, index) in result_data_generate" :key="index" :id="'p_line_' + index" @click="copyIndividualContent(result, (result.field).concat(index))" style="cursor: pointer;">
+                    <p v-if="result_data_generate.length > 0" class="class_p_line" v-for = "(result, index) in result_data_generate" :key="index" :id="result.field" @click="copyIndividualContent(result, (result.field).concat(index))" style="cursor: pointer;">
                         
-                        <font-awesome-icon icon="arrow-left" @click="searchAndWrite(result, 'p_line_' + index)" />
+                        <font-awesome-icon icon="arrow-left" @click="searchAndWrite(result, result.field)" />
                         {{ result.field }}: 
                         {{ result.value }}
 
@@ -161,7 +161,7 @@
       searchAndWhriteAll(){
 
         this.result_data_generate.forEach((result) => {
-          this.searchAndWrite(result);
+          this.searchAndWrite(result, result.field);
         });
 
       },
@@ -185,11 +185,19 @@
 
             /* Send a message to the content script */
             chrome.tabs.sendMessage(tabId, {action: "searchAndWriteField", parameter}, (response) => { 
-              if (chrome.runtime.lastError) {
-                console.log(chrome.runtime.lastError.message);
-              } else if (!response) {
-                alert("Was not possible to find the field. Please, try again.");
+              
+              if (response && response.success === true) {
+                this.putAninmationWhenFoundField(p_field);             
+              } else {             
+                this.putAninmationWhenNotFoundField(p_field);
               }
+
+              if (chrome.runtime.lastError) {
+                  console.log(chrome.runtime.lastError.message);
+              } else if (!response) {
+                  alert("Was not possible to find the field. Please, try again.");
+              }
+
             });
 
           } else {
@@ -213,17 +221,46 @@
           elements.classList.add('animate__animated', 'animate__bounceOutLeft'); 
           setTimeout(() => { elements.classList.remove('animate__animated', 'animate__bounceOutLeft'); }, 1000);
 
-        }else{
+        }
+      },
 
-          elements = document.querySelectorAll('.class_p_line');
-          elements.forEach(element => {
-              element.classList.add('animate__animated', 'animate__bounceOutLeft');
-              setTimeout(() => { element.classList.remove('animate__animated', 'animate__bounceOutLeft'); }, 1000);
-          });
+      putAninmationWhenFoundField(p_field){
+
+        let elements = null;
+
+        if (p_field != null) {
+        
+          setTimeout(() => { 
+            elements = document.getElementById(p_field);       
+            elements.classList.add('found'); 
+          }, 1500);
+
+        }
+      },  
+
+      putAninmationWhenNotFoundField(p_field){
+
+        let elements = null;
+
+        if (p_field != null) {
+        
+          setTimeout(() => { 
+            elements = document.getElementById(p_field);       
+            elements.classList.add('not-found','animate__animated', 'animate__shakeX'); 
+            setTimeout(() => { elements.classList.remove('animate__animated', 'animate__shakeX'); }, 3000);
+          }, 1500);
 
         }
       }
     }    
   };
   </script>
-  
+  <style>
+
+  .found{
+    color: green;
+  }
+  .not-found{
+    color: red;
+  }
+</style>
