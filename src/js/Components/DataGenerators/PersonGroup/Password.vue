@@ -17,8 +17,8 @@ export default {
             tags: [
                 'password',
                 'senha',
-                'txt_password',
-                'txt_senha',
+                'password',
+                'senha',
                 'user_password',
                 'user_senha',
                 'senha_usuario',

@@ -21,15 +21,15 @@ export default {
                     'passport_person',
                     'passport_client',
                     'passport_user',
-                    'txt_passport_person',
-                    'txt_passport_client',
-                    'txt_passport_user',
+                    'passport_person',
+                    'passport_client',
+                    'passport_user',
                     'passport_physical',
                     'passport_legal',
                     'passport_individual',
-                    'txt_passport_physical',
-                    'txt_passport_legal',
-                    'txt_passport_individual'
+                    'passport_physical',
+                    'passport_legal',
+                    'passport_individual'
                     ],
             is_check_cpf: false,
             dataStore: dataStore()

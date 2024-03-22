@@ -14,19 +14,19 @@ export default {
             tags: [
                     'cpf',
                     'CPF',
-                    'txt_cpf',
+                    'cpf',
                     'cpf_pessoa',
                     'cpf_cliente',
                     'cpf_usuario',
-                    'txt_cpf_pessoa',
-                    'txt_cpf_cliente',
-                    'txt_cpf_usuario',
+                    'cpf_pessoa',
+                    'cpf_cliente',
+                    'cpf_usuario',
                     'cpf_fisico',
                     'cpf_juridico',
                     'cpf_individual',
-                    'txt_cpf_fisico',
-                    'txt_cpf_juridico',
-                    'txt_cpf_individual'
+                    'cpf_fisico',
+                    'cpf_juridico',
+                    'cpf_individual'
                     ],
             is_check_cpf: false
         }

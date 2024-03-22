@@ -18,7 +18,7 @@ export default {
             tags: [
                     'name',
                     'nome',
-                    'txt_name',
+                    'name',
                     'nome_completo',
                     'full_name',
                     'first_name',

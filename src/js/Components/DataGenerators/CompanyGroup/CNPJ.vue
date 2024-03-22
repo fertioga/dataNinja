@@ -13,20 +13,19 @@ export default {
             name: 'cnpj',
             tags: [
                     'cnpj',
-                    'txt_cnpj',
                     'CNPJ',
                     'cnpj_empresa',
                     'cnpj_cliente',
                     'cnpj_fornecedor',
-                    'txt_cnpj_empresa',
-                    'txt_cnpj_cliente',
-                    'txt_cnpj_fornecedor',
+                    'cnpj_empresa',
+                    'cnpj_cliente',
+                    'cnpj_fornecedor',
                     'cnpj_social',
                     'cnpj_pessoal',
                     'cnpj_comercial',
-                    'txt_cnpj_social',
-                    'txt_cnpj_pessoal',
-                    'txt_cnpj_comercial'
+                    'cnpj_social',
+                    'cnpj_pessoal',
+                    'cnpj_comercial'
                     ],
             is_check_cnpj: false
         }
