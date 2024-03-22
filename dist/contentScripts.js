@@ -6,13 +6,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const valueToInject = request.parameter.value // value to insert into field
         
         // find and write into input fields
-        const textField = injectValueIntoInputField(tagToFind, valueToInject);
+        const textField = injectValueIntoInputField(tagToFind, valueToInject, 'input:not([type="button"])');
 
         // find and write into textarea fields
-        const textareaField = injectValueIntoAllTextareaField(valueToInject);
+        const textareaField = injectValueIntoInputField(tagToFind, valueToInject, 'textarea');
         
-        console.log("textField: ", textField, " textareaField: ", textareaField)
-
         // if textField or textareaField is true, return success
         sendResponse({ 
                         success: (textField || textareaField)? true : false
@@ -25,10 +23,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
    * @param {string} valueToInject
    * @returns {boolean}
    */
-function injectValueIntoInputField(tagToFind, valueToInject) {
+function injectValueIntoInputField(tagToFind, valueToInject, querySelector) {
         
     const MIN_SIMILARITY = 30; // Similarity percentage to inject value into field
-    const inputs = document.querySelectorAll('input:not([type="button"])'); // List all inputs of page
+    const inputs = document.querySelectorAll(querySelector); // List all inputs of page
 
     // Iterate to find fields
     for (const field of inputs) { 
@@ -62,25 +60,6 @@ function injectValueIntoInputField(tagToFind, valueToInject) {
             }
         }
     }
-
-    return false;
-}
-
-/**
- * @param {string} valueToInject
- * @returns {void}
- */
-function injectValueIntoAllTextareaField(valueToInject) {
-
-    const textAreas = document.querySelectorAll('textarea'); // List all textAreas of page
-
-        for (const field of textAreas) { // Iterate to find 
-
-            field.value = valueToInject; // put value into all textarea
-
-            return true; // return to stop iteration
-        
-        }
 
     return false;
 }

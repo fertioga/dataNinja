@@ -1,17 +1,53 @@
   <template>
     <div class="container animate__animated animate__fadeInLeft">
 
-      <PersonGroup :eventBtClicked="btClicked" @event_data="generate_data"></PersonGroup>
+      <div class="d-flex align-items-start">
 
-      <IdentificationGroup :eventBtClicked="btClicked" @event_data="generate_data"></IdentificationGroup>
+        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <button class="nav-link active" id="person-group-tab" data-bs-toggle="pill" data-bs-target="#person" type="button" role="tab" aria-controls="person" aria-selected="true">Person</button>
+          <button class="nav-link" id="identification-group-tab" data-bs-toggle="pill" data-bs-target="#identification-group" type="button" role="tab" aria-controls="identification-group" aria-selected="false">Identification</button>
+          <button class="nav-link" id="company-group-tab" data-bs-toggle="pill" data-bs-target="#company-group" type="button" role="tab" aria-controls="company-group" aria-selected="false">Company</button>
+          <button class="nav-link" id="financial-group-tab" data-bs-toggle="pill" data-bs-target="#financial-group" type="button" role="tab" aria-controls="financial-group" aria-selected="false">Financial</button>
+          <button class="nav-link" id="date-group-tab" data-bs-toggle="pill" data-bs-target="#date-group" type="button" role="tab" aria-controls="date-group" aria-selected="false">Date</button>
+          <button class="nav-link" id="system-group-tab" data-bs-toggle="pill" data-bs-target="#system-group" type="button" role="tab" aria-controls="system-group" aria-selected="false">System</button>
+        </div>
+
+        <div class="tab-content" id="v-pills-tabContent">
+
+          <div class="tab-pane fade show active" id="person" role="tabpanel" aria-labelledby="person-group-tab"> 
+            <PersonGroup :eventBtClicked="btClicked" @event_data="generate_data"></PersonGroup>
+          </div>
+
+          <div class="tab-pane fade" id="identification-group" role="tabpanel" aria-labelledby="identification-group-tab">
+            <IdentificationGroup :eventBtClicked="btClicked" @event_data="generate_data"></IdentificationGroup>
+          </div>
+          
+          <div class="tab-pane fade" id="company-group" role="tabpanel" aria-labelledby="company-group-tab">
+            <CompanyGroup :eventBtClicked="btClicked" @event_data="generate_data"></CompanyGroup>
+          </div>
+          
+          <div class="tab-pane fade" id="financial-group" role="tabpanel" aria-labelledby="financial-group-tab">
+            <FinancialGroup :eventBtClicked="btClicked" @event_data="generate_data"></FinancialGroup>
+          </div>
+
+          <div class="tab-pane fade" id="date-group" role="tabpanel" aria-labelledby="date-group-tab">
+            <DateGroup :eventBtClicked="btClicked" @event_data="generate_data"></DateGroup>
+          </div>
+
+          <div class="tab-pane fade" id="system-group" role="tabpanel" aria-labelledby="system-group-tab">
+            <SystemGroup :eventBtClicked="btClicked" @event_data="generate_data"></SystemGroup>
+          </div>
+
+        </div>
+      </div>    
+
      
-      <CompanyGroup :eventBtClicked="btClicked" @event_data="generate_data"></CompanyGroup>
 
-      <FinancialGroup :eventBtClicked="btClicked" @event_data="generate_data"></FinancialGroup>
+      
 
-      <DateGroup :eventBtClicked="btClicked" @event_data="generate_data"></DateGroup>
+      
 
-      <SystemGroup :eventBtClicked="btClicked" @event_data="generate_data"></SystemGroup>
+      
      
       <div class="row">
         <div class="col">

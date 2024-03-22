@@ -18,7 +18,6 @@ export default {
                     // Em Português
                     'Obs',
                     'Observação',
-                    'Texto',
                     'Descrição',
                     'Comentário',
                     'Comentários',
@@ -28,7 +27,6 @@ export default {
                     'Conteúdo',
                     // Em Inglês
                     'Note',
-                    'Text',
                     'Description',
                     'Name',
                     'Comment',

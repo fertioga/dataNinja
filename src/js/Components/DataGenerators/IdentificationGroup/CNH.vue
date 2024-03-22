@@ -14,7 +14,6 @@ export default {
             name: 'cnh',
             tags: [
                 'cnh',
-                'texto_cnh',
                 'carteira_de_habilitacao',
                 'n_cnh',
                 'numero_cnh',
