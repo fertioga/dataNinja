@@ -29,7 +29,10 @@
         <div class="row">
             <div class="col">
                 <LorenIpsum :eventBtClicked="btClicked" @event_data="generate_data"></LorenIpsum>
-            </div>            
+            </div>     
+            <div class="col">
+                <CSR :eventBtClicked="btClicked" @event_data="generate_data"></CSR>
+            </div>         
         </div>
     </div>    
 </template>
@@ -45,6 +48,7 @@ import UUID_v1 from './UUID_v1.vue';
 import UUID_v4 from './UUID_v4.vue';
 import UUID_v7 from './UUID_v7.vue';
 import UUID_ULID from './UUID_ULID.vue';
+import CSR from './CSR.vue';
 
 export default {
     name: 'SystemGroup',
@@ -53,7 +57,8 @@ export default {
         UUID_v1,
         UUID_v4,
         UUID_v7,
-        UUID_ULID
+        UUID_ULID,
+        CSR
     },
     data() {
         return {
