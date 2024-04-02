@@ -1,19 +1,20 @@
 <template>
-    <div class="form-check">
-        <input class="form-check-input" v-model="is_check_cellphone_br" type="checkbox" value="" id="check_cellphone_br">
-        <label class="form-check-label" for="check_cellphone_br">
-            Cellphone (BR)
-        </label>
-    </div>
+    <checkboxComponent :id="id" :label="label" @is_checked="event_is_check"></checkboxComponent>
 </template>
 <script>
 import { generatePhoneNumber } from '/src/Utils/generate.js';
 import { dataStore } from '/src/Stores/dataStore.js';
+import checkboxComponent from '/src/js/Components/DataGenerators/Checkbox.vue';
 
 export default {
+    components: {
+        checkboxComponent
+    },   
     data() {
         return {
             name: 'cellphone_br',
+            id: 'check_cellphone_br',
+            label: 'Cellphone (BR)',
             tags: [
             'cellphone',
             'celular',
@@ -31,19 +32,28 @@ export default {
             'celular_number',
             'num_celular'
             ],
-            is_check_cellphone_br: false,
+            is_checked: false,
             dataStore: dataStore()
         }
     },
     props: ['eventBtClicked'], // eventBtClicked is a prop that receives a boolean value from the parent component
     watch: {
         eventBtClicked(data) {
-            if (data === true && this.is_check_cellphone_br === true) // if the prop eventBtClicked is true and the checkbox is checked
+            if (data === true && this.is_checked === true) // if the prop eventBtClicked is true and the checkbox is checked
                 this.processEvent(); // call the method processEvent
             
         }
     },
     methods: {
+        
+        /**
+         * Process event is check
+         * @param {bool} value 
+         */
+         event_is_check(value) {
+            this.is_checked = value;
+        },
+        
         processEvent() {
             return this.$emit('event_data', this.generatePhone()); 
         },

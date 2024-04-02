@@ -1,19 +1,20 @@
 <template>
-    <div class="form-check">
-        <input class="form-check-input" v-model="is_check_email" type="checkbox" value="" id="check_email">
-        <label class="form-check-label" for="check_email">
-            Email
-        </label>
-    </div>
+    <checkboxComponent :id="id" :label="label" @is_checked="event_is_check"></checkboxComponent>
 </template>
 <script>
 import { dataStore } from '/src/Stores/dataStore.js';
 import { generateName, generateEmail } from '/src/Utils/generate.js';
+import checkboxComponent from '/src/js/Components/DataGenerators/Checkbox.vue';
 
 export default {
+    components: {
+        checkboxComponent
+    },   
     data() {
         return {
             name: 'email',
+            id: 'check_email',
+            label: 'Email',
             tags: 
                 [
                     'email',
@@ -37,19 +38,28 @@ export default {
                     'reply',
                     'sendto'
                     ],
-            is_check_email: false,
+            is_checked: false,
             dataStore: dataStore()
         }
     },
     props: ['eventBtClicked'],
     watch: {
         eventBtClicked(data) {
-            if (data === true && this.is_check_email === true) 
+            if (data === true && this.is_checked === true) 
                 this.processEvent();
             
         }
     },
     methods: {
+
+        /**
+         * Process event is check
+         * @param {bool} value 
+         */
+         event_is_check(value) {
+            this.is_checked = value;
+        },
+        
         processEvent() {
             this.getEmail().then((result)=>{
                 this.$emit('event_data', result);

@@ -1,38 +1,47 @@
 <template>
-    <div class="form-check">
-        <input class="form-check-input" v-model="is_check_csr" type="checkbox" value="" id="check_csr">
-        <label class="form-check-label" for="check_csr">
-            CSR
-        </label>
-    </div>
+    <checkboxComponent :id="id" :label="label" @is_checked="event_is_check"></checkboxComponent>
 </template>
 <script>
-import { dataStore } from '/src/Stores/dataStore.js';
+import checkboxComponent from '/src/js/Components/DataGenerators/Checkbox.vue';
 import forge from 'node-forge';
 
 export default {
+    components: {
+        checkboxComponent
+    },    
     data() {
         return {
             name: 'csr',
+            id: 'check_csr',
+            label: 'CSR',
             tags: [
                     'csr',
                     'certificate_signing_request',
                     'certificate_request',
                     'certificate_request_signing',
                 ],
-            is_check_csr: false,
-            dataStore: dataStore()
+            is_checked: false
         }
     },
-    props: ['eventBtClicked'],
+    props: ['eventBtClicked'],    
     watch: {
         eventBtClicked(data) {
-            if (data === true && this.is_check_csr === true) 
+            if (data === true && this.is_checked === true){
                 this.processEvent();
-            
+            }   
         }
     },
+   
     methods: {
+
+        /**
+         * Process event is check
+         * @param {bool} value 
+         */
+        event_is_check(value) {
+            this.is_checked = value;
+        },
+
         processEvent() {
 
             /**
@@ -45,11 +54,11 @@ export default {
             }).catch((error) => {
                 console.error(error);
             });
-        },
+        },        
 
         async generateCsr() {
            
-            // Cria uma nova chave RSA de 4096 bits
+            // Cria uma nova chave RSA de 2048 bits
             const keys = forge.pki.rsa.generateKeyPair(2048);
 
             // Cria uma solicitação de assinatura de certificado (CSR) com a chave gerada
@@ -58,11 +67,11 @@ export default {
             csr.setSubject([
                 { name: 'commonName', value: 'example.com' }, 
                 { name: 'countryName', value: 'US' },         
-                { name: 'organizationName', value: 'Example Inc' } 
+                { name: 'organizationName', value: 'Data Ninja' } 
             ]);
 
-            // Assina o CSR com a chave privada
-            csr.sign(keys.privateKey);
+            // Define o algoritmo de hash SHA-256
+            csr.sign(keys.privateKey, forge.md.sha256.create());
 
             // Converte o CSR para formato PEM
             const csrPem = forge.pki.certificationRequestToPem(csr);
@@ -77,7 +86,7 @@ export default {
                 "field": this.name,
                 "tags": this.tags,
                 "value": csrPem
-            }
+            }   
         }
     }
 }

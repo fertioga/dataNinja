@@ -1,16 +1,17 @@
 <template>
-    <div class="form-check">
-        <input class="form-check-input" v-model="is_check_cnpj" type="checkbox" value="" id="check_cnpj">
-        <label class="form-check-label" for="check_cnpj">
-            CNPJ
-        </label>
-    </div>
+    <checkboxComponent :id="id" :label="label" @is_checked="event_is_check"></checkboxComponent>
 </template>
 <script>
+import checkboxComponent from '/src/js/Components/DataGenerators/Checkbox.vue';
 export default {
+    components: {
+        checkboxComponent
+    },   
     data() {
         return {
             name: 'cnpj',
+            id: 'check_cnpj',
+            label: 'CNPJ',
             tags: [
                     'cnpj',
                     'CNPJ',
@@ -27,18 +28,26 @@ export default {
                     'cnpj_pessoal',
                     'cnpj_comercial'
                     ],
-            is_check_cnpj: false
+            is_checked: false
         }
     },
     props: ['eventBtClicked'],
     watch: {
 
         eventBtClicked(data) {
-            if (data === true && this.is_check_cnpj === true) 
+            if (data === true && this.is_checked === true) 
                 this.processEvent();            
         }
     },
     methods: {
+        
+        /**
+         * Process event is check
+         * @param {bool} value 
+         */
+         event_is_check(value) {
+            this.is_checked = value;
+        },
         
         processEvent() {
             this.$emit('event_data', this.generateCNPJ());

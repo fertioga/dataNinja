@@ -56,6 +56,9 @@ export default {
       dataStore: dataStore(), 
     };
   },
+  mounted() {
+    //
+  }
 };
 </script>
 <style>

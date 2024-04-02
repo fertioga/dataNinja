@@ -4,6 +4,7 @@
   "description": "DataNinja",
   "scripts": {
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --env=production --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production"
   },
   "repository": {
@@ -26,6 +27,7 @@
     "@material/menu": "^14.0.0",
     "@material/web": "^1.3.0",
     "@popperjs/core": "^2.11.8",
+    "@vueuse/core": "^10.9.0",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",

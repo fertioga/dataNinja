@@ -1,6 +1,8 @@
   <template>
     <div class="container">
 
+      <button type="button" class="btn btn-warning" @click="cleanCheckbox()">Clean Checkbox</button>
+
       <div class="d-flex align-items-start">
 
         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -112,7 +114,8 @@
   import CompanyGroup from './CompanyGroup/Index.vue';
   import DateGroup from './DateGroup/Index.vue';
   import SystemGroup from './SystemGroup/Index.vue';
- 
+  import { checkboxStore } from '/src/Stores/checkboxStore.js';
+
   export default {
     components: {
       PersonGroup,
@@ -130,6 +133,7 @@
         iconVisible: null,
         content_copied: false,
         dataStore: dataStore(),
+        checkboxStore: checkboxStore()
       };
     },
     methods: {
@@ -154,6 +158,18 @@
         // Set the btClicked to false after 1 second
         setTimeout(() => this.btClicked = false, 1000);
 
+        //TODO: TIRAR ISSO
+        setTimeout(() => {
+          console.table(this.checkboxStore.getAll());
+        }, 1500);
+
+      },
+
+      /**
+       * Clean all checkbox from localStore
+       */
+      cleanCheckbox(){
+        this.checkboxStore.clear();
       },
 
       /**

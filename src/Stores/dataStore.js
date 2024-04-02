@@ -5,7 +5,7 @@ export const dataStore = defineStore('dataStore', {
     state: () => {
         return { 
             loading: false,
-            dataGenerated: [] 
+            dataGenerated: []
         }
     },
 
@@ -92,8 +92,7 @@ export const dataStore = defineStore('dataStore', {
          */
         getLoading() {
             return this.loading
-        }   
-
+        },        
     },
 
     getters: {
