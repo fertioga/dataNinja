@@ -39,24 +39,20 @@ function injectValueIntoInputField(tagToFind, valueToInject, querySelector) {
 
             const tagCleaned = cleanString(tag);
 
-            const similarityId = calculateSimilarity(tagCleaned, cleanedFieldId);
-            const similarityName = calculateSimilarity(tagCleaned, cleanedFieldName);
-
-            // console.log("TAG:",tagCleaned, 
-            //             " ID:", cleanedFieldId, " %:", similarityId, 
-            //              " NAME: ",cleanedFieldName, " %:",similarityName)
-
-            // if similarity is greater than MIN_SIMILARITY, inject value into field
-            if (similarityId > MIN_SIMILARITY || similarityName > MIN_SIMILARITY) {
+            // const similarityId = calculateSimilarity(tagCleaned, cleanedFieldId);
+            // const similarityName = calculateSimilarity(tagCleaned, cleanedFieldName);
+            
+            if (cleanedFieldId.includes(tagCleaned) || cleanedFieldName.includes(tagCleaned)) {    
 
                 field.value = valueToInject;
 
-                console.log("Injetado valor no campo: ", field.id, 
-                            " com a tag: ", tagCleaned, 
-                            " com similaridade de: ", "ID: ",cleanedFieldId,": ", similarityId, 
-                            " e ", cleanedFieldName, ": ", similarityName)
+                animateFieldWhenFound(field);
 
                 return true; // return to stop iteration
+            }else{
+
+                animeteFieldWhenNotFound(field);
+            
             }
         }
     }
@@ -64,46 +60,41 @@ function injectValueIntoInputField(tagToFind, valueToInject, querySelector) {
     return false;
 }
 
+/**
+ * Clean string to compare
+ * @param {string} str 
+ * @returns 
+ */
 function cleanString(str) {
     return str.replace(/[_-]/g, '').trim();
 }
 
 /**
- * 
- * @param {string} str1 
- * @param {string} str2 
- * @returns 
+ * Animate field when found
+ * @param {object} field 
  */
-function calculateSimilarity(str1, str2) {
+function animateFieldWhenFound(field) {
 
-    // Converte as strings para minúsculas para ignorar a diferença de maiúsculas e minúsculas
-    const lowerStr1 = str1.toLowerCase();
-    const lowerStr2 = str2.toLowerCase();
+    setTimeout(()=>{
+
+        field.style.backgroundColor = '#34eb83';
+        field.style.transition = 'background-color 1s';
+        setTimeout(() => {
+            field.style.backgroundColor = '';
+        }, 1000);
+
+    },1500)
     
-    // Função para encontrar todas as substrings de uma string
-    function getSubstrings(str) {
-        const substrings = [];
-        for (let i = 0; i < str.length; i++) {
-            for (let j = i + 1; j <= str.length; j++) {
-                substrings.push(str.slice(i, j));
-            }
-        }
-        return substrings;
-    }
+}
 
-    // Obtém todas as substrings de cada string
-    const substrings1 = getSubstrings(lowerStr1);
-    const substrings2 = getSubstrings(lowerStr2);
-
-    // Conta quantas substrings em comum as duas strings possuem
-    let commonSubstrings = 0;
-    for (let substring of substrings1) {
-        if (substrings2.includes(substring)) {
-            commonSubstrings++;
-        }
-    }
-
-    // Calcula a porcentagem de similaridade com base na quantidade de substrings em comum
-    const similarity = (commonSubstrings / Math.max(substrings1.length, substrings2.length)) * 100;
-    return similarity.toFixed(2);
+/**
+ * Animate field when not found
+ * @param {object} field 
+ */
+function animeteFieldWhenNotFound(field) {
+    field.style.backgroundColor = '#f29b9b';
+    field.style.transition = 'background-color 1s';
+    setTimeout(() => {
+        field.style.backgroundColor = '';
+    }, 1000);
 }
