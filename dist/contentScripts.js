@@ -38,9 +38,6 @@ function injectValueIntoInputField(tagToFind, valueToInject, querySelector) {
         for (const tag of tagToFind) {  
 
             const tagCleaned = cleanString(tag);
-
-            // const similarityId = calculateSimilarity(tagCleaned, cleanedFieldId);
-            // const similarityName = calculateSimilarity(tagCleaned, cleanedFieldName);
             
             if (cleanedFieldId.includes(tagCleaned) || cleanedFieldName.includes(tagCleaned)) {    
 
