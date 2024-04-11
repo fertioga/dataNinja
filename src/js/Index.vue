@@ -43,7 +43,7 @@
           </h2>
           <div id="jsonFormatter" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMain">
             <div class="accordion-body">
-              <!-- TODO -->
+              <JsonFormatter> </JsonFormatter>
             </div>
           </div>
         </div>   
@@ -86,13 +86,15 @@ import { ref } from 'vue';
 import { dataStore } from '/src/Stores/dataStore.js';
 import DataGenerators from './Components/DataGenerators/Index.vue';
 import ImageGenerators from './Components/ImageGenerators/Index.vue';
+import JsonFormatter from './Components/JsonFormatter/Index.vue';
 
 export default {
   name: 'Data Ninja',
 
   components: {
     DataGenerators,
-    ImageGenerators
+    ImageGenerators,
+    JsonFormatter,
   },
   data() {
     return {

@@ -201,11 +201,6 @@
         // Set the btClicked to false after 1 second
         setTimeout(() => this.btClicked = false, 1000);
 
-        //TODO: TIRAR ISSO
-        setTimeout(() => {
-          console.table(this.checkboxStore.getAll());
-        }, 1500);
-
       },
 
       /**
