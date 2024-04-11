@@ -9,13 +9,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <div class="card w-100">
-                    <div class="card-body">
-                        <div class="card-text" id="content_result">
-                            <PersonImage :btImageClicked="btClicked" ></PersonImage>
-                        </div>
-                    </div>
-                </div>
+                <PersonImage :btImageClicked="btClicked" ></PersonImage>
             </div>
         </div>  
     </div>
@@ -23,6 +17,7 @@
 
 <script>
 import PersonImage from './PersonImage.vue';
+import { dataStore } from '/src/Stores/dataStore.js'
 
 export default {
     name: 'ImageGenerators',
@@ -31,11 +26,15 @@ export default {
     },
     data() {
         return {
-            btClicked: false // to control the button click
+            btClicked: false, // to control the button click
+            dataStore: dataStore()
         }
     },
     methods: {
         btIsClicked() {
+
+            // set Loading true
+            this.dataStore.setLoadingDuring(2000);
 
             // set the btClicked to true
             this.btClicked = true;
