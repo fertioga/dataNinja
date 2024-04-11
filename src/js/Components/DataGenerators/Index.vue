@@ -1,6 +1,14 @@
   <template>
     <div class="container">
 
+      <div class="form-check">
+          <input class="form-check-input" v-model="clock_renew" type="checkbox" id="ck_clock_renew" value="">
+          <label class="form-check-label" for="ck_clock_renew">
+              Renew 
+              <span v-if="clock_renew">in: {{ qt_sec_renew }} sec.</span>
+          </label>
+      </div>
+
       <button type="button" class="btn btn-warning" @click="cleanCheckbox()">Clean Checkbox</button>
 
       <div class="d-flex align-items-start">
@@ -116,6 +124,8 @@
   import SystemGroup from './SystemGroup/Index.vue';
   import { checkboxStore } from '/src/Stores/checkboxStore.js';
 
+  const TIME_RENEW_DATA = 30;
+
   export default {
     components: {
       PersonGroup,
@@ -132,12 +142,45 @@
         result_data_generate: [],
         iconVisible: null,
         content_copied: false,
+        qt_sec_renew: null,
+        clock_renew: false,
         dataStore: dataStore(),
         checkboxStore: checkboxStore()
       };
     },
+    watch: {
+      clock_renew: function (ck_is_selected) {      
+        this.renewClock(ck_is_selected);
+      }
+    },
     methods: {
      
+      /**
+       * Renew the clock
+       */
+      renewClock(ck_is_selected) {
+  
+          if (ck_is_selected) {
+            this.qt_sec_renew = TIME_RENEW_DATA;
+
+            this.interval = setInterval(() => {
+              this.qt_sec_renew--;
+
+              // if the time is over, click the button
+              if (this.qt_sec_renew == 0) {
+                this.btIsClicked();
+                this.qt_sec_renew = TIME_RENEW_DATA;
+              }
+
+            }, 1000);
+
+          } else {
+            clearInterval(this.interval);
+            this.qt_sec_renew = null;
+          }
+    
+      },
+
       /**
        * Set the btClicked to true
        */

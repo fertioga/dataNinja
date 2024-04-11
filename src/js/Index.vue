@@ -5,15 +5,15 @@
         <div> <img src="images/loading.gif"></div>
       </div>
 
-      <div class="accordion" id="accordionExample">
-        <!-- item datagenerator -->
+      <div class="accordion" id="accordionMain">
+        <!-- data datagenerator -->
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#dataGenerator" aria-expanded="true" aria-controls="dataGenerator">
               Generate Fake Data
             </button>
           </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div id="dataGenerator" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionMain">
                   <div class="accordion-body">
                     <DataGenerators> </DataGenerators>
                   </div>
@@ -23,16 +23,59 @@
         <!-- item imagegenerator -->
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fakeImage" aria-expanded="false" aria-controls="fakeImage">
               Generate Fake Image
             </button>
           </h2>
-          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div id="fakeImage" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMain">
             <div class="accordion-body">
               <ImageGenerators> </ImageGenerators>
             </div>
           </div>
         </div>      
+
+        <!-- JSON Formatter -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#jsonFormatter" aria-expanded="false" aria-controls="jsonFormatter">
+              JSON Formatter
+            </button>
+          </h2>
+          <div id="jsonFormatter" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMain">
+            <div class="accordion-body">
+              <!-- TODO -->
+            </div>
+          </div>
+        </div>   
+
+        <!-- Encode Decode  -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#encodeDecode" aria-expanded="false" aria-controls="encodeDecode">
+              Encode/Decode
+            </button>
+          </h2>
+          <div id="encodeDecode" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMain">
+            <div class="accordion-body">
+              <!-- TODO -->
+            </div>
+          </div>
+        </div>   
+
+        <!-- Color Picker  -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#colorPicker" aria-expanded="false" aria-controls="colorPicker">
+              Color Picker
+            </button>
+          </h2>
+          <div id="colorPicker" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMain">
+            <div class="accordion-body">
+              <!-- TODO -->
+            </div>
+          </div>
+        </div>   
+
       </div>
 
   </div>
