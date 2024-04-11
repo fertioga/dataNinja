@@ -25,7 +25,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
    */
 function injectValueIntoInputField(tagToFind, valueToInject, querySelector) {
         
-    const MIN_SIMILARITY = 30; // Similarity percentage to inject value into field
     const inputs = document.querySelectorAll(querySelector); // List all inputs of page
 
     // Iterate to find fields
@@ -72,6 +71,7 @@ function cleanString(str) {
  */
 function animateFieldWhenFound(field) {
 
+    // wait 1.5s to animate because the not found will be animated first
     setTimeout(()=>{
 
         field.style.backgroundColor = '#34eb83';
