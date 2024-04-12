@@ -90,6 +90,20 @@
           </div>
         </div>  
 
+        <!-- Regex  -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ascii" aria-expanded="false" aria-controls="ascii">
+              Regex Builder
+            </button>
+          </h2>
+          <div id="ascii" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMain">
+            <div class="accordion-body">
+              <Regex></Regex> 
+            </div>
+          </div>
+        </div>  
+
       </div>
 
   </div>
@@ -103,6 +117,7 @@ import ImageGenerators from './Components/ImageGenerators/Index.vue';
 import JsonFormatter from './Components/JsonFormatter/Index.vue';
 import ColorPicker from './Components/ColorPicker/Index.vue';
 import Ascii from './Components/Ascii/Index.vue';
+import Regex from './Components/Regex/Index.vue';
 
 export default {
   name: 'Data Ninja',
@@ -112,7 +127,8 @@ export default {
     ImageGenerators,
     JsonFormatter,
     ColorPicker,
-    Ascii
+    Ascii,
+    Regex
   },
   data() {
     return {
