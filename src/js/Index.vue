@@ -71,7 +71,7 @@
           </h2>
           <div id="colorPicker" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMain">
             <div class="accordion-body">
-              <!-- TODO -->
+              <ColorPicker></ColorPicker>
             </div>
           </div>
         </div>   
@@ -87,6 +87,7 @@ import { dataStore } from '/src/Stores/dataStore.js';
 import DataGenerators from './Components/DataGenerators/Index.vue';
 import ImageGenerators from './Components/ImageGenerators/Index.vue';
 import JsonFormatter from './Components/JsonFormatter/Index.vue';
+import ColorPicker from './Components/ColorPicker/Index.vue';
 
 export default {
   name: 'Data Ninja',
@@ -95,6 +96,7 @@ export default {
     DataGenerators,
     ImageGenerators,
     JsonFormatter,
+    ColorPicker
   },
   data() {
     return {
