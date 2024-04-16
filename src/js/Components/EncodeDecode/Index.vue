@@ -58,6 +58,7 @@
 
 <script>
     import forge from 'node-forge';
+    import { dataStore } from '/src/Stores/dataStore.js'
 
     export default {
         data() {
@@ -66,6 +67,7 @@
                 result: '',
                 ckEncodeDecode: '',
                 content_copied: false,
+                dataStore: dataStore(),
             }
         },
         methods: {
@@ -73,6 +75,9 @@
              * Encode or decode the text according to the selected option
              */
             encodeDecode() {
+
+                // set Loading true
+                this.dataStore.setLoadingDuring(1000);
 
                 if (this.ckEncodeDecode == 'encode64') {
                     this.result = ""

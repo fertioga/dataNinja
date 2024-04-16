@@ -34,6 +34,8 @@
   
   <script>
   import ModalExamplesRegex from './ModalExamplesRegex.vue';
+  import { dataStore } from '/src/Stores/dataStore.js'
+
   export default {
     components: {
       ModalExamplesRegex
@@ -44,7 +46,8 @@
         testString: '',
         testResult: null,
         typeTestResult: '',
-        animation: ''
+        animation: '',
+        dataStore: dataStore(),
       };
     },
     methods: {
@@ -62,6 +65,10 @@
        */
       testRegex() {
         try {
+
+          // set Loading true
+          this.dataStore.setLoadingDuring(1000);
+          
           const regex = new RegExp(this.regex);
           this.testResult = regex.test(this.testString);
 
