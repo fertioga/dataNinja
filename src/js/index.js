@@ -10,9 +10,9 @@ import Index from "./Index.vue";
 library.add(fas);
 const pinia = createPinia()
 
+import "bootstrap/dist/js/bootstrap.js";
+
 createApp(Index)
 .component('font-awesome-icon', FontAwesomeIcon)
 .use(pinia)
 .mount("#app");
-
-import "bootstrap/dist/js/bootstrap.js"

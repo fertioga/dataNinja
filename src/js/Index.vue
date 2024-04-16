@@ -93,11 +93,11 @@
         <!-- Regex  -->
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ascii" aria-expanded="false" aria-controls="ascii">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#regex" aria-expanded="false" aria-controls="regex">
               Regex Builder
             </button>
           </h2>
-          <div id="ascii" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMain">
+          <div id="regex" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMain">
             <div class="accordion-body">
               <Regex></Regex> 
             </div>
