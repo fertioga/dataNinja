@@ -57,7 +57,7 @@
           </h2>
           <div id="encodeDecode" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMain">
             <div class="accordion-body">
-              <!-- TODO -->
+              <EncodeDecode></EncodeDecode>
             </div>
           </div>
         </div>   
@@ -118,6 +118,7 @@ import JsonFormatter from './Components/JsonFormatter/Index.vue';
 import ColorPicker from './Components/ColorPicker/Index.vue';
 import Ascii from './Components/Ascii/Index.vue';
 import Regex from './Components/Regex/Index.vue';
+import EncodeDecode from './Components/EncodeDecode/Index.vue';
 
 export default {
   name: 'Data Ninja',
@@ -128,7 +129,8 @@ export default {
     JsonFormatter,
     ColorPicker,
     Ascii,
-    Regex
+    Regex,
+    EncodeDecode
   },
   data() {
     return {
