@@ -103,9 +103,12 @@
             </div>
           </div>
         </div>  
-
       </div>
 
+      <!-- Footer -->
+      <div class="footer">
+        <About></About>        
+      </div>
   </div>
 </template>
 
@@ -119,6 +122,7 @@ import ColorPicker from './Components/ColorPicker/Index.vue';
 import Ascii from './Components/Ascii/Index.vue';
 import Regex from './Components/Regex/Index.vue';
 import EncodeDecode from './Components/EncodeDecode/Index.vue';
+import About from './Components/About/Index.vue';
 
 export default {
   name: 'Data Ninja',
@@ -130,7 +134,8 @@ export default {
     ColorPicker,
     Ascii,
     Regex,
-    EncodeDecode
+    EncodeDecode,
+    About
   },
   data() {
     return {
