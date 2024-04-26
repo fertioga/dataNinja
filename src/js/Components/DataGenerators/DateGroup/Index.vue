@@ -3,7 +3,6 @@
         <!-- DATE -->
         <div class="row">
             <div class="col">
-                <hr>
                 Date:
             </div>
         </div>

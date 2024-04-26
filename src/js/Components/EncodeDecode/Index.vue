@@ -1,53 +1,57 @@
 <template>
-    <div>
+    <div class="container" data-bs-theme="dark">
         <div class="row">
             <div class="col-md-6">
-                <label for="text">Text</label>
+                <label for="text">Text:</label>
                 <textarea class="form-control" v-model="text" id="text" placeholder="Put your text here"></textarea>
             </div>  
         </div>        
-
+        <hr>
         <div class="row">
                 <div class="col-md-6" style="max-width: 47%;">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" v-model="ckEncodeDecode" value="encode64" name="ckEncodeDecode" id="encode64">
-                        <label class="form-check-label" for="encode64">
-                            Enc. Base64
+                        <label class="form-check-label" for="encode64" title="Encode Base64">
+                            Encode Base64
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" v-model="ckEncodeDecode" value="decode64" name="ckEncodeDecode" id="decode64" >
+                        <input class="form-check-input" type="radio" title="Decode Base64" v-model="ckEncodeDecode" value="decode64" name="ckEncodeDecode" id="decode64" >
                         <label class="form-check-label" for="decode64">
-                            Dec. Base64
+                            Decode Base64
                         </label>
                     </div>
                 </div>  
                 <div class="col-md-6" style="max-width: 47%;">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" v-model="ckEncodeDecode" value="encodeSha1" name="ckEncodeDecode" id="encodeSha1">
+                        <input class="form-check-input" type="radio" title="Encode SHA1" v-model="ckEncodeDecode" value="encodeSha1" name="ckEncodeDecode" id="encodeSha1">
                         <label class="form-check-label" for="encodeSha1">
-                            Enc. SHA1
+                            Encode SHA1
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" v-model="ckEncodeDecode" value="encodeSha2" name="ckEncodeDecode" id="encodeSha2">
+                        <input class="form-check-input" type="radio" title="Encode SHA256" v-model="ckEncodeDecode" value="encodeSha2" name="ckEncodeDecode" id="encodeSha2">
                         <label class="form-check-label" for="encodeSha2">
-                            Enc. SHA2
+                            Encode SHA256
                         </label>
                     </div>
                 </div>  
         </div>  
         <div class="row">
-            <div class="col-md-6">
-                <button class="btn btn-info" @click="encodeDecode">Encode/Decode</button>
+            <div class="col">
+                <div id="content" class="d-grid gap-2">
+                    <hr>
+                        <button type="button" class="btn btn-info" @click="encodeDecode">Encode/Decode</button>
+                    <hr>
+                </div>
             </div>
         </div>
         <div class="row" v-if="result">
             <div style="position: relative;">
                 <textarea class="form-control" v-model="result" id="textarea_result" rows="5" cols="50"></textarea>
 
-                <div id="copy_group" style="position: absolute; top: 10px; right: 10px;">
-                    <font-awesome-icon icon="copy" v-if="!content_copied" title="Copy" @click="copy()" style="cursor: pointer;" /> 
+                <div id="copy_group_encode_decode">
+                    <font-awesome-icon icon="copy" v-if="!content_copied" title="Copy" @click="copy()" style="cursor: pointer; color:#74A8A3" /> 
                     <span v-if="content_copied" style="margin-left: 5px; color: green;">Copied!</span>
                 </div>    
             </div>
@@ -148,3 +152,14 @@
         }   
     }
 </script>
+<style>
+    .form-check-label {
+        font-weight: bold;
+    }
+
+    #copy_group_encode_decode {
+        position: absolute;
+        right: 24px;
+        top: 8px;
+    }
+</style>

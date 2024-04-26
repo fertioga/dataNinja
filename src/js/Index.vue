@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="container">
       <!-- Div de sobreposição para aparecer durante o carregamento -->
       <div v-if="dataStore.getLoading()" class="overlay">
         <div> <img src="images/loading.gif"></div>
@@ -103,11 +103,25 @@
             </div>
           </div>
         </div>  
-      </div>
 
+        <!-- About  -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#about" aria-expanded="false" aria-controls="about">
+              @About
+            </button>
+          </h2>
+          <div id="about" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMain">
+            <div class="accordion-body">
+              <About></About>  
+            </div>
+          </div>
+        </div>  
+
+      </div>
       <!-- Footer -->
-      <div class="footer">
-        <About></About>        
+      <div class="fixed-bottom">
+              
       </div>
   </div>
 </template>
@@ -148,6 +162,31 @@ export default {
 };
 </script>
 <style>
+  .accordion {
+    --bs-accordion-border-color: none;
+  }
+
+  body, .accordion-item {
+    background: #282A36 !important;
+    color: #f8f8f2 !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+  }
+
+  .accordion-header {
+    box-shadow: #fff 0px 0px 4px 0px !important;
+  }
+
+  .accordion-body {
+    padding: 16px 4px !important;
+  }
+
+  .accordion-button {
+    background: #44475a !important;
+    color: #f8f8f2 !important;
+  }
+
   .overlay {
     position: fixed;
     top: 0;
@@ -159,5 +198,10 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .fixed-bottom {
+    background-color: #fff;
+    border-radius: 15px; 
   }
 </style>

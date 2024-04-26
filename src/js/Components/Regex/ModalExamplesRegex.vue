@@ -1,6 +1,6 @@
 
 <template>
-    <div>
+    <div class="container" data-bs-theme="dark">
         <!-- Button trigger modal -->
         <a href="#" data-bs-toggle="modal" data-bs-target="#examplesRegex">
             examples

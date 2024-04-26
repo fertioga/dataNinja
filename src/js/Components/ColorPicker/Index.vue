@@ -21,3 +21,11 @@ export default {
     }
 }
 </script>
+<style>
+.color-picker {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+</style>
+

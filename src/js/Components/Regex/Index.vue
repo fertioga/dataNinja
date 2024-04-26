@@ -1,25 +1,28 @@
 <template>
-    <div>
+    <div class="container" data-bs-theme="dark">
       <div class="row">
-        <div class="col-md-6">
-          <ModalExamplesRegex></ModalExamplesRegex>
+          <div class="col-md-6">
+            <label>Regex Builder</label>
+            <div style="float: right;">
+              <ModalExamplesRegex></ModalExamplesRegex>
+            </div>
+            <textarea :class="'form-control ' + animation" v-model="regex" id="textarea_regex" placeholder="Regex Builder"></textarea>
+          </div>
         </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Test String</label>
+            <textarea :class="'form-control ' + animation" v-model="testString" id="textarea_test" placeholder="Put your String here to test"></textarea>
+          </div>
       </div>
+      
       <div class="row">
-        <div class="col-md-6">
-          <label>Regex Builder</label>
-          <textarea :class="'form-control ' + animation" v-model="regex" id="textarea_regex" placeholder="Regex Builder"></textarea>
-        </div>
-        <div class="col-md-6">
-          <label>Test String</label>
-          <textarea :class="'form-control ' + animation" v-model="testString" id="textarea_test" placeholder="Put your String here to test"></textarea>
-        </div>
-      </div>
-     
-      <div class="row">
-        <div class="col-md-6">
-          <button class="btn btn-info" @click="testRegex">Test</button>
-        </div>       
+        <div id="content" class="d-grid gap-2">
+            <hr>
+                <button type="button" class="btn btn-info" @click="testRegex">Test</button>
+            <hr>
+        </div>   
       </div> 
       
       <div class="row" v-if="testResult !== null">

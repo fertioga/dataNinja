@@ -3,7 +3,6 @@
         <!-- COMPANY -->
         <div class="row">
             <div class="col">
-                <hr>
                 Company:
             </div>
         </div>

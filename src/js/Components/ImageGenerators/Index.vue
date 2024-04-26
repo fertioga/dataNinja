@@ -1,13 +1,16 @@
 <template>
     <div class="container">
-        <div class="row">
+        <div class="row">            
             <div class="col">
-                <div id="content">
-                    <button type="button" class="btn btn-success" @click="btIsClicked">Generate Image</button>
+                <div id="content" class="d-grid gap-2">
+                    <hr>
+                    <button type="button" class="btn btn-info" @click="btIsClicked">Generate Image</button>
+                    <hr>
                 </div>
             </div>
         </div>
         <div class="row">
+            
             <div class="col">
                 <PersonImage :btImageClicked="btClicked" ></PersonImage>
             </div>

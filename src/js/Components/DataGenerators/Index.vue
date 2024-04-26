@@ -1,60 +1,38 @@
   <template>
-    <div class="container">
+    <div class="container" data-bs-theme="dark">
+      <div class="row">
+        <div class="col-md-6" style="width: auto;">
+          <div class="form-check form-switch">
+            <input class="form-check-input" v-model="clock_renew" type="checkbox" id="ck_clock_renew" value="">
+            <label class="form-check-label" for="ck_clock_renew"> 
+                renew 
+                <span v-if="clock_renew">in: {{ qt_sec_renew }} sec.</span></label>
+          </div>          
+        </div>
 
-      <div class="form-check">
-          <input class="form-check-input" v-model="clock_renew" type="checkbox" id="ck_clock_renew" value="">
-          <label class="form-check-label" for="ck_clock_renew">
-              Renew 
-              <span v-if="clock_renew">in: {{ qt_sec_renew }} sec.</span>
-          </label>
+        <div class="col-md-6" @click="cleanCheckbox()" style="cursor: pointer; width: auto;">
+          <font-awesome-icon icon="minus-square" title="Clean"  style="cursor: pointer;" />  clean
+        </div>
       </div>
 
-      <button type="button" class="btn btn-warning" @click="cleanCheckbox()">Clean Checkbox</button>
-
-      <div class="d-flex align-items-start">
-
-        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-          <button class="nav-link active" id="person-group-tab" data-bs-toggle="pill" data-bs-target="#person" type="button" role="tab" aria-controls="person" aria-selected="true">Person</button>
-          <button class="nav-link" id="identification-group-tab" data-bs-toggle="pill" data-bs-target="#identification-group" type="button" role="tab" aria-controls="identification-group" aria-selected="false">Identification</button>
-          <button class="nav-link" id="company-group-tab" data-bs-toggle="pill" data-bs-target="#company-group" type="button" role="tab" aria-controls="company-group" aria-selected="false">Company</button>
-          <button class="nav-link" id="financial-group-tab" data-bs-toggle="pill" data-bs-target="#financial-group" type="button" role="tab" aria-controls="financial-group" aria-selected="false">Financial</button>
-          <button class="nav-link" id="date-group-tab" data-bs-toggle="pill" data-bs-target="#date-group" type="button" role="tab" aria-controls="date-group" aria-selected="false">Date</button>
-          <button class="nav-link" id="system-group-tab" data-bs-toggle="pill" data-bs-target="#system-group" type="button" role="tab" aria-controls="system-group" aria-selected="false">System</button>
-        </div>
-
-        <div class="tab-content" id="v-pills-tabContent">
-
-          <div class="tab-pane fade show active" id="person" role="tabpanel" aria-labelledby="person-group-tab"> 
-            <PersonGroup :eventBtClicked="btClicked" @event_data="generate_data"></PersonGroup>
-          </div>
-
-          <div class="tab-pane fade" id="identification-group" role="tabpanel" aria-labelledby="identification-group-tab">
-            <IdentificationGroup :eventBtClicked="btClicked" @event_data="generate_data"></IdentificationGroup>
-          </div>
-          
-          <div class="tab-pane fade" id="company-group" role="tabpanel" aria-labelledby="company-group-tab">
-            <CompanyGroup :eventBtClicked="btClicked" @event_data="generate_data"></CompanyGroup>
-          </div>
-          
-          <div class="tab-pane fade" id="financial-group" role="tabpanel" aria-labelledby="financial-group-tab">
-            <FinancialGroup :eventBtClicked="btClicked" @event_data="generate_data"></FinancialGroup>
-          </div>
-
-          <div class="tab-pane fade" id="date-group" role="tabpanel" aria-labelledby="date-group-tab">
-            <DateGroup :eventBtClicked="btClicked" @event_data="generate_data"></DateGroup>
-          </div>
-
-          <div class="tab-pane fade" id="system-group" role="tabpanel" aria-labelledby="system-group-tab">
-            <SystemGroup :eventBtClicked="btClicked" @event_data="generate_data"></SystemGroup>
-          </div>
-
-        </div>
-      </div>    
+        <hr>
+        <PersonGroup :eventBtClicked="btClicked" @event_data="generate_data"></PersonGroup>
+        <hr>
+        <IdentificationGroup :eventBtClicked="btClicked" @event_data="generate_data"></IdentificationGroup>
+        <hr>
+        <CompanyGroup :eventBtClicked="btClicked" @event_data="generate_data"></CompanyGroup>
+        <hr>
+        <FinancialGroup :eventBtClicked="btClicked" @event_data="generate_data"></FinancialGroup>
+        <hr>
+        <DateGroup :eventBtClicked="btClicked" @event_data="generate_data"></DateGroup>
+        <hr>
+        <SystemGroup :eventBtClicked="btClicked" @event_data="generate_data"></SystemGroup>
      
       <div class="row">
         <div class="col">
-          <div id="content" class="position-center">
-            <button type="button" class="btn btn-success" @click="btIsClicked">Generate Data</button>
+          <div id="content" class="d-grid gap-2">
+            <hr>
+              <button type="button" class="btn btn-info" @click="btIsClicked">Generate Data</button>
             <hr>
           </div>
         </div>
@@ -62,25 +40,25 @@
 
       <!--Buttons Send and Copy All row-->
       <div class="row" v-if="result_data_generate.length > 0">
-        <div class="col">
+        <div class="col" style="width: 100%;">
 
           <div id="content">
-            <div @click="searchAndWhriteAll()" style="cursor: pointer;" title="Send All to the Page">
+            <div @click="searchAndWhriteAll()" class="icon-send-all" style="cursor: pointer;" title="Send All to the Page">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
                 <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
               </svg>
-              Send All
+              send all 
             </div>
           </div>
 
         </div>
         <div class="col">
 
-          <div id="content" style="cursor: pointer;" title="Copy All" @click="copyAllContent()" >
-            Copy All 
+          <div id="content" style="cursor: pointer;" class="icon-copy-all"  title="Copy All" @click="copyAllContent()" >
+            copy all  
             <font-awesome-icon icon="copy" />           
-            <span v-if="content_copied" style="margin-left: 5px; color: green;">Copied!</span>
+            <span v-if="content_copied" style="margin-left: 5px; color: green;">copied!</span>
           </div>
 
         </div>
@@ -88,7 +66,7 @@
 
       <!--Result row-->
       <div class="row">
-        <div class="col col-result">            
+        <div class="col col-result" id="content_result">            
             <p v-if="result_data_generate.length > 0" class="class-p-line position-relative" v-for = "(result, index) in result_data_generate" :key="index" :id="result.field" @click="copyIndividualContent(result, result.field)" style="cursor: pointer;">
                 
                 <div class="icon-wrapper" @click="searchAndWrite(result, result.field)" title="Send to the Page">
@@ -100,7 +78,7 @@
 
                 <span class="floating-label">{{ result.field }}:</span>
 
-                <span class="span-result">{{ result.value }}</span>
+                <p class="p-result">{{ result.value }}</p>
 
                 <div class="icon-copy-check-container">
                   <font-awesome-icon icon="copy"  title="Copy"  v-if="(iconVisible != result.field && content_copied == false)" />
@@ -185,6 +163,9 @@
        * Set the btClicked to true
        */
       btIsClicked() {
+
+        // Scroll to the result
+        $('html, body').animate({scrollTop: $('#content_result').offset().top}, 'slow');
         
         // set Loading true
         this.dataStore.setLoadingDuring(1500);
@@ -374,6 +355,8 @@
             elements.classList.remove('found')  
             elements.classList.add('not-found','animate__animated', 'animate__shakeX'); 
             setTimeout(() => { elements.classList.remove('animate__animated', 'animate__shakeX'); }, 3000);
+
+            setTimeout(() => { elements.classList.remove('not-found'); }, 4000);
           }, 1500);
 
         }
@@ -386,47 +369,71 @@
     position: relative;
   }
 
-  .span-result {
+  .collapsed, .accordion-button:focus {
+    box-shadow: none !important;
+  }
+
+  .p-result {
     font-size: 1rem;
+    overflow: hidden;
+    margin-bottom: 0;
   }
 
   .floating-label {
     position: absolute;
-    top: -15px; /* Ajuste conforme necessário */
-    left: 10px; /* Ajuste conforme necessário */
-    background-color: white;
+    top: -15px; 
+    left: 10px; 
     padding: 0 5px;
+    color: #8DB9DC;
+    background: #282A36;
     z-index: 1;
   }
 
+  .icon-copy-all {
+    color: #74A8A3;
+    font-size: 1rem;
+    font-weight: bold;
+    float: right;
+  }
+  
   .icon-copy-check-container {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 8px;
+    right: 8px;
+    color: #74A8A3;
   }
 
   .class-p-line{
     margin-bottom: 14px;
     padding: 10px;
     width: 100%;
-    border: 1px solid #3333;
+    border: 2px solid #6272A4;
   }
 
   .found{
-    color: green;
+    color: #74A8A3;
   }
   
   .not-found{
-    color: red;
+    color: #dc3545;
+  }
+
+  .icon-send-all {
+    color: #74A8A3;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: -12px;
   }
 
   .icon-arrow-send {
       padding: 0;
       align-self: top; 
       float: left;
-      margin-right: 10px; /* Adicione margem direita conforme necessário */
+      margin-right: 10px; 
       position: absolute;
       top: 10px;
+      color: #74A8A3;
+      background: #282A36;
   }
 
   .icon-wrapper {
@@ -440,6 +447,16 @@
   }
 
   .col-result {
-    padding: 30px 0 0 0
+    padding: 30px 8px;
+    background: #282A36 !important;    
+    color: #f8f8f2 !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+  }
+
+  .btn-info {
+    color: #282A36;
+    font-weight: bold;
   }
 </style>

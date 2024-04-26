@@ -3,7 +3,6 @@
         <!-- FINANCIAL -->
         <div class="row">
             <div class="col">
-            <hr>
             Financial:
             </div>
         </div>

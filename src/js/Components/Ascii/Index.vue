@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="container" data-bs-theme="dark">
       <h2>ASCII Table</h2>
-      <table>
+      <table class="table table-dark table-striped">
         <thead>
           <tr>
             <th>Decimal</th>
@@ -13,7 +13,7 @@
         </thead>
         <tbody>
           <template v-for="(char, index) in asciiChars" :key="char.decimal">
-            <tr :class="{ 'gray-row': index % 2 === 0, 'white-row': index % 2 !== 0 }">
+            <tr>
               <td>{{ char.decimal }}</td>
               <td>{{ char.char }}</td>
               <td>{{ char.name }}</td>

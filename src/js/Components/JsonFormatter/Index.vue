@@ -1,12 +1,24 @@
 <template>
-    <div style="position: relative;">
-        <textarea class="form-control" v-model="jsonInput" id="textarea_json" rows="20" cols="50"></textarea>
-        <button type="button" class="btn btn-success" @click="formatJson">Format JSON</button>
+    <div class="container" data-bs-theme="dark">
+        <div class="row">        
+            <div class="col-md-6" style="width: 45%;">
+                <label for="textarea_json" class="form-label>">JSON:</label>
+            </div>
+            <div id="copy_group_json" class="col-md-6" style="width: 45%;">
+                <div style="float: right;">
+                    <font-awesome-icon icon="copy" v-if="!content_copied" title="Copy" @click="copy()" style="cursor: pointer; color: #74A8A3;" /> 
+                    <span v-if="content_copied" style="margin-left: 5px; color: green;">Copied!</span>
+                </div>       
+            </div>
+        </div>  
 
-        <div id="copy_group" style="position: absolute; top: 10px; right: 10px;">
-            <font-awesome-icon icon="copy" v-if="!content_copied" title="Copy" @click="copy()" style="cursor: pointer;" /> 
-            <span v-if="content_copied" style="margin-left: 5px; color: green;">Copied!</span>
-        </div>       
+        <textarea class="form-control" placeholder="Paste here." v-model="jsonInput" id="textarea_json" rows="20"></textarea>
+
+        <div id="content" class="d-grid gap-2">
+            <hr>
+                <button type="button" class="btn btn-info" @click="formatJson">Format JSON</button>
+            <hr>
+        </div>
         
         <div v-if="errorMessage" class="alert alert-danger" role="alert">
             {{ errorMessage }}
@@ -64,7 +76,10 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-/* Add your styles here */
+<style>
+ #copy_group_json {
+    position: absolute;
+    right: 16px;
+    margin-top: 32px;
+}
 </style>

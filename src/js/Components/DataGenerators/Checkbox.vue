@@ -54,3 +54,18 @@ export default {
     },
 }
 </script>
+<style>
+    .form-check-input {
+        background-color: #282A36;
+        border: 2px solid #6272A4;
+
+    }
+    .form-check-input:checked {
+        background-color: #50FA7B;
+        border-color: #50FA7B;
+        color: #282A36;
+    }
+    .form-check-label {
+        font-weight: bold;
+    }
+</style>

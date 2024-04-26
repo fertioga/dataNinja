@@ -3,7 +3,6 @@
        <!-- System -->
         <div class="row">
             <div class="col">
-                <hr>
                 System:
             </div>
         </div>

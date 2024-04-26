@@ -30,6 +30,9 @@ export default {
                     'company_name',
                     'companhia',
                     'enterprise',
+                    'razao_social',
+                    'social_reason',
+                    'social'
                     ],
             is_checked: false,
             dataStore: dataStore()

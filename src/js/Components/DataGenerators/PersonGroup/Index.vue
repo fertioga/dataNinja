@@ -3,7 +3,7 @@
         <!-- PERSON -->
         <div class="row">
             <div class="col">
-                Person:          
+                Person:         
             </div>
         </div>
         <!-- line  -->

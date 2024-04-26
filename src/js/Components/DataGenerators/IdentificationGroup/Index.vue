@@ -3,7 +3,6 @@
         <!-- IDENTIFICATION -->
         <div class="row">
             <div class="col">
-            <hr>
             Identification:
             </div>
         </div>

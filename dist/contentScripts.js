@@ -38,10 +38,18 @@ function injectValueIntoInputField(tagToFind, valueToInject, querySelector) {
 
             const tagCleaned = cleanString(tag);
             
-            if (cleanedFieldId.includes(tagCleaned) || cleanedFieldName.includes(tagCleaned)) {    
-
+            if (cleanedFieldId.includes(tagCleaned) || cleanedFieldName.includes(tagCleaned)) {   
+                
                 field.value = valueToInject;
+                
+                /** dispach input event */
+                const inputEvent = new Event('input', { bubbles: true, cancelable: true });
+                field.dispatchEvent(inputEvent);
 
+                /** dispach change event */
+                const changeEvent = new Event('change', { bubbles: true });
+                field.dispatchEvent(changeEvent);
+                
                 animateFieldWhenFound(field);
 
                 return true; // return to stop iteration
@@ -74,7 +82,7 @@ function animateFieldWhenFound(field) {
     // wait 1.5s to animate because the not found will be animated first
     setTimeout(()=>{
 
-        field.style.backgroundColor = '#34eb83';
+        field.style.backgroundColor = '#50fa7b';
         field.style.transition = 'background-color 1s';
         setTimeout(() => {
             field.style.backgroundColor = '';
@@ -89,7 +97,7 @@ function animateFieldWhenFound(field) {
  * @param {object} field 
  */
 function animeteFieldWhenNotFound(field) {
-    field.style.backgroundColor = '#f29b9b';
+    field.style.backgroundColor = '#dc3545';
     field.style.transition = 'background-color 1s';
     setTimeout(() => {
         field.style.backgroundColor = '';
