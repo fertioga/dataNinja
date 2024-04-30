@@ -17,7 +17,6 @@ export default {
             tags: [
                     // Português
                     'cc',
-                    'cc',
                     'cc_numero',
                     'numero_cc',
                     'cc_cliente',
@@ -35,8 +34,6 @@ export default {
                     'user_cc',
                     'client_cc',
                     'user_cc',
-                    'client_cc_number',
-                    'user_cc_number',
                     'client_cc_number',
                     'user_cc_number',
                     'card_number',
