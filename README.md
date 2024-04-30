@@ -4,8 +4,7 @@
 Data Ninja is a versatile developer toolbox plugin designed to streamline various tasks for programmers, Product Owners (POs), and Quality Assurance (QAs) professionals. Whether you're in need of generating fake data, formatting JSON, encoding and decoding, or even picking colors, Data Ninja has got you covered.
 
 ## Video
-<iframe width="560" height="315" src="https://www.youtube.com/embed/aUbzEQbPmhA?si=xvLNyYWGPogVEY_n" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+https://www.youtube.com/embed/aUbzEQbPmhA?si=xvLNyYWGPogVEY_n
 
 ## Features
 
