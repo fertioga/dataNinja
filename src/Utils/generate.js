@@ -140,9 +140,146 @@ function generatePhoneNumber(format) {
     return phoneNumber;
 }
 
+function generateDate(format) {
+
+    const today = new Date();
+    const futureDate = new Date(today.getTime() + Math.random() * (365 * 24 * 60 * 60 * 1000 * 10)); // Adiciona até 10 anos no futuro
+
+    switch(format.toUpperCase()) {
+        case 'BR':
+            return `${futureDate.getDate().toString().padStart(2, '0')}/${(futureDate.getMonth() + 1).toString().padStart(2, '0')}/${futureDate.getFullYear()}`;
+        case 'US':
+            return `${(futureDate.getMonth() + 1).toString().padStart(2, '0')}/${futureDate.getDate().toString().padStart(2, '0')}/${futureDate.getFullYear()}`;
+        case 'DB':
+            return `${futureDate.getFullYear()}-${(futureDate.getMonth() + 1).toString().padStart(2, '0')}-${futureDate.getDate().toString().padStart(2, '0')}`;
+        case 'TIMESTAMP':
+            return today.getTime();
+        default:
+            return 'Formato inválido';
+    }
+}
+
+function generateUUID(type) {
+    switch (type.toLowerCase()) {
+        case 'v1':
+            return generateUUIDv1();
+        case 'v4':
+            return generateUUIDv4();
+        case 'v7':
+            return generateUUIDv7();
+        case 'ulid':
+            return generateULID();
+        default:
+            return 'Tipo de UUID inválido';
+    }
+}
+
+function generateUUIDv1() {
+    // UUID v1
+    let timestamp = Date.now();
+    const uuid = 'xxxxxxxx-xxxx-1xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = (timestamp + Math.random() * 16) % 16 | 0;
+        timestamp = Math.floor(timestamp / 16);
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+    return uuid;
+}
+
+function generateUUIDv4() {
+    // UUID v4
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
+function generateUUIDv7() {
+    // UUID v7
+    let timestamp = Date.now();
+    const uuid = 'xxxxxxxx-xxxx-7xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = (timestamp + Math.random() * 16) % 16 | 0;
+        timestamp = Math.floor(timestamp / 16);
+        return (c === 'x' ? r : (r & 0x3 | 0x7)).toString(16);
+    });
+    return uuid;
+}
+
+function generateULID() {
+    // ULID
+    const chars = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+    let ulid = '';
+    for (let i = 0; i < 26; i++) {
+        if (i === 14) {
+            ulid += '1'; // Timestamp component
+        } else {
+            ulid += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+    }
+    return ulid;
+}
+
+async function generateLoremIpsumParagraph() {
+    try {
+        // Faz uma solicitação GET para a API Lorem Ipsum com o número de palavras desejado
+        const response = await fetch(`https://hipsum.co/api/?type=hipster-centric&paras=5&sentences=10`);
+
+        // Verifica se a solicitação foi bem-sucedida
+        if (!response.ok) {
+            throw new Error('Erro ao acessar a API Lorem Ipsum');
+        }
+
+        // Converte a resposta para JSON
+        const data = await response.json();
+
+        // Retorna o parágrafo gerado
+        const result = data[0];
+
+        return result;
+
+    } catch (error) {
+        console.error('Ocorreu um erro:', error);
+        return null;
+    }
+}
+
+function generateSecurePassword() {
+    const length = Math.floor(Math.random() * (20 - 8 + 1)) + 8; // Entre 8 e 20 caracteres
+    const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()-_+=[]{}"; // Caracteres permitidos
+    let password = "";
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        password += charset[randomIndex];
+    }
+    return password;
+}
+
+async function generatePersonImage() {
+    try {
+        // Faz uma solicitação GET this person does not exist
+        const response = await fetch(`https://thispersondoesnotexist.com/`);
+
+        // Verifica se a solicitação foi bem-sucedida
+        if (!response.ok) {
+            throw new Error('Erro ao acessar a API Lorem Ipsum');
+        }
+
+        return response['url'];
+
+    } catch (error) {
+        console.error('Ocorreu um erro:', error);
+        return null;
+    }
+}
+
 export { 
         generateName, 
         generateEmail, 
         generateCompany,
-        generatePhoneNumber
+        generatePhoneNumber,
+        generateDate,
+        generateUUID,
+        generateLoremIpsumParagraph,
+        generateSecurePassword,
+        generatePersonImage
     }

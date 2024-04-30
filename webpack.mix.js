@@ -1,4 +1,15 @@
-let mix = require("laravel-mix");
+const mix = require('laravel-mix');
+const webpack = require('webpack');
+
+mix.webpackConfig({
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
+        })
+    ]
+});
 
 mix
   .setPublicPath("./")
