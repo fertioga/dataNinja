@@ -5,9 +5,7 @@
   "description": "A Chrome plugin for developers, testers & POs. Streamline workflow, format JSON, pick colors, add random images & generate fake data",
   "permissions": [
     "sidePanel", 
-    "activeTab", 
-    "scripting", 
-    "storage"
+    "activeTab"
   ],
   "icons": {
     "16": "images/16x16.png",
