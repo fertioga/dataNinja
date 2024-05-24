@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Data Ninja",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A Chrome plugin for developers, testers & POs. Streamline workflow, format JSON, pick colors, add random images & generate fake data",
   "permissions": [
     "sidePanel", 
