@@ -272,6 +272,93 @@ async function generatePersonImage() {
     }
 }
 
+/**
+ * CNPJ alfanumérico (IN RFB 2.229/2024) — valor ASCII − 48 para DV
+ * @param {string} char
+ * @returns {number}
+ */
+function cnpjAlphaCharValue(char) {
+    return char.charCodeAt(0) - 48;
+}
+
+/**
+ * Pesos 2–9 da direita para a esquerda (reinicia após 8 posições)
+ * @param {number} length
+ * @param {number} indexFromLeft
+ * @returns {number}
+ */
+function cnpjAlphaWeight(length, indexFromLeft) {
+    const posFromRight = length - 1 - indexFromLeft;
+    return (posFromRight % 8) + 2;
+}
+
+/**
+ * Calcula um DV do CNPJ alfanumérico (módulo 11)
+ * @param {string} chars
+ * @returns {number} dígito 0–9
+ */
+function cnpjAlphaSingleCheckDigit(chars) {
+    let sum = 0;
+    const length = chars.length;
+    for (let i = 0; i < length; i++) {
+        sum += cnpjAlphaCharValue(chars[i]) * cnpjAlphaWeight(length, i);
+    }
+    const resto = sum % 11;
+    return (resto === 0 || resto === 1) ? 0 : (11 - resto);
+}
+
+/**
+ * Calcula os dois dígitos verificadores a partir de 12 caracteres alfanuméricos
+ * @param {string} base12
+ * @returns {[number, number]}
+ */
+function calculateCnpjAlphaCheckDigits(base12) {
+    const dv1 = cnpjAlphaSingleCheckDigit(base12);
+    const dv2 = cnpjAlphaSingleCheckDigit(base12 + String(dv1));
+    return [dv1, dv2];
+}
+
+/**
+ * Formata 14 caracteres brutos no padrão XX.XXX.XXX/XXXX-XX
+ * @param {string} raw14
+ * @returns {string}
+ */
+function formatCnpjAlpha(raw14) {
+    return (
+        raw14.slice(0, 2) + '.' +
+        raw14.slice(2, 5) + '.' +
+        raw14.slice(5, 8) + '/' +
+        raw14.slice(8, 12) + '-' +
+        raw14.slice(12, 14)
+    );
+}
+
+/**
+ * Gera CNPJ alfanumérico válido (máscara brasileira)
+ * @returns {string} ex.: 12.ABC.345/01DE-35
+ */
+function generateCnpjAlpha() {
+    const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    let base12 = '';
+    for (let i = 0; i < 12; i++) {
+        base12 += alphabet[Math.floor(Math.random() * alphabet.length)];
+    }
+
+    if (!/[A-Z]/.test(base12)) {
+        const pos = Math.floor(Math.random() * 12);
+        base12 =
+            base12.slice(0, pos) +
+            letters[Math.floor(Math.random() * letters.length)] +
+            base12.slice(pos + 1);
+    }
+
+    const [dv1, dv2] = calculateCnpjAlphaCheckDigits(base12);
+    const raw14 = base12 + String(dv1) + String(dv2);
+    return formatCnpjAlpha(raw14);
+}
+
 export { 
         generateName, 
         generateEmail, 
@@ -281,5 +368,6 @@ export {
         generateUUID,
         generateLoremIpsumParagraph,
         generateSecurePassword,
-        generatePersonImage
+        generatePersonImage,
+        generateCnpjAlpha
     }
