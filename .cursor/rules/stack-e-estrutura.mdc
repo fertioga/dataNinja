@@ -1,0 +1,46 @@
+---
+description: Stack, estrutura de pastas e convenções do Data Ninja (extensão Chrome)
+alwaysApply: true
+---
+
+# Stack e estrutura — Data Ninja
+
+Extensão Chrome (Manifest V3) — toolbox para desenvolvedores, QAs e POs (dados fake, JSON, encode/decode, cores, etc.).
+
+## Stack principal
+
+- **UI**: Vue 3 (Options API nos componentes atuais), Pinia, VueUse
+- **Estilo**: Bootstrap 5, Sass (`src/sass`), Font Awesome, Bootstrap Icons, animate.css, Material Web
+- **Build**: Laravel Mix 6 + Webpack (`webpack.mix.js`); saída em `dist/`
+- **Outros**: jQuery (via ProvidePlugin), node-forge, vue-codemirror, @ckpack/vue-color, @popperjs/core
+- **Scripts**: `npm run watch` (dev) | `npm run production` / `npm run prod` (build)
+
+## Estrutura de pastas (`src/`)
+
+| Pasta | Responsabilidade |
+|-------|------------------|
+| `src/js/` | Código da aplicação: entry (`index.js`), `Index.vue` e componentes em `Components/` |
+| `src/Data/` | Dados estáticos (JSON) usados pelo plugin — nomes, empresas, etc. Copiados para `dist/Data/` no build |
+| `src/Stores/` | Estado em cache (Pinia). Persistência local via VueUse `useStorage` quando necessário |
+| `src/Utils/` | Helpers e geradores reutilizáveis (ex.: `generate.js`) |
+| `src/sass/` | Estilos SCSS compilados para `dist/css` |
+
+Scripts da extensão em `dist/` (`background.js`, `contentScripts.js`, `manifest.json`) ficam no build; fonte da UI Vue é sempre em `src/`.
+
+## Convenções ao adicionar código
+
+1. **Novo componente/ferramenta** → `src/js/Components/<Feature>/` (ex.: `DataGenerators/PersonGroup/Name.vue`)
+2. **Dados estáticos** → JSON em `src/Data/`; consumir via `fetch('../Data/...')` ou caminho equivalente no contexto do plugin
+3. **Estado compartilhado / cache** → store Pinia em `src/Stores/` (`defineStore`), não misturar estado global dentro de Utils
+4. **Lógica pura de geração/transformação** → `src/Utils/`; componentes importam Utils e Stores, não o contrário para UI
+5. **Imports** → preferir caminhos absolutos do projeto, como nos arquivos existentes: `/src/Stores/...`, `/src/Utils/...`, `/src/js/Components/...`
+6. **Não editar** artefatos gerados em `dist/js` ou `dist/css` — alterar a fonte em `src/` e rebuildar
+
+## Exemplo de responsabilidades
+
+```text
+Name.vue (js/Components)  → UI + tags + chama geração
+generate.js (Utils)       → gera nome/email a partir dos JSONs
+dataStore.js (Stores)     → guarda dados gerados em sessão
+FirstNames.json (Data)    → lista estática de nomes
+```
