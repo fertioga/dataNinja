@@ -27639,7 +27639,7 @@ var _hoisted_31 = /*#__PURE__*/_withScopeId(function () {
     target: "_blank"
   }, "@karla-franca", -1 /* HOISTED */);
 });
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h3 style=\"text-align:center;margin:40px 0 24px 0;\" data-v-d590ac98>If you enjoy using the plugin</h3><div class=\"row\" data-v-d590ac98><div class=\"col\" style=\"text-align:center;\" data-v-d590ac98><p data-v-d590ac98><a href=\"https://www.buymeacoffee.com/fertioga\" target=\"_blank\" data-v-d590ac98><img src=\"https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png\" alt=\"Buy Me A Coffee\" style=\"height:30px !important;width:110px !important;\" data-v-d590ac98></a></p><p data-v-d590ac98> PIX: <br data-v-d590ac98><img src=\"images/qr-code.png\" alt=\"PIX\" data-v-d590ac98></p></div></div>", 2);
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h3 style=\"text-align:center;margin:40px 0 24px 0;\" data-v-d590ac98>If you enjoy using the plugin</h3><div class=\"row\" data-v-d590ac98><div class=\"col\" style=\"text-align:center;\" data-v-d590ac98><p data-v-d590ac98><a href=\"https://www.buymeacoffee.com/fertioga\" target=\"_blank\" data-v-d590ac98><img src=\"https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png\" alt=\"Buy Me A Coffee\" style=\"height:30px !important;width:110px !important;\" data-v-d590ac98></a></p></div></div>", 2);
 var _hoisted_34 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 });
