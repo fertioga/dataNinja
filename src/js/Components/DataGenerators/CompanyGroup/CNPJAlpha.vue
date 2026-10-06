@@ -13,7 +13,7 @@ export default {
         return {
             name: 'cnpj_alpha',
             id: 'check_cnpj_alpha',
-            label: 'CNPJ Alpha',
+            label: 'CNPJ Alfa',
             tags: [
                 'cnpj_alpha',
                 'CNPJ Alpha',
