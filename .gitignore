@@ -6,3 +6,4 @@ Thumbs.db
 *.tmp
 *.swp
 .idea/
+releases/*.zip
