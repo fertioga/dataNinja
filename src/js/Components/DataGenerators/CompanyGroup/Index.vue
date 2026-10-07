@@ -13,6 +13,7 @@
             </div>
             <div class="col">
                 <CNPJ :eventBtClicked="btClicked" @event_data="generate_data"></CNPJ>
+                <CNPJAlpha :eventBtClicked="btClicked" @event_data="generate_data"></CNPJAlpha>
             </div>
         </div>
         <!-- line -->
@@ -31,6 +32,7 @@
  * recieves the event from the components and emits the data to the parent
  */
 import CNPJ from './CNPJ.vue';
+import CNPJAlpha from './CNPJAlpha.vue';
 import Company from './Company.vue';
 import Website from './Website.vue';
 
@@ -38,6 +40,7 @@ export default {
     name: 'CompanyGroup',
     components: {
         CNPJ,
+        CNPJAlpha,
         Company,
         Website
     },

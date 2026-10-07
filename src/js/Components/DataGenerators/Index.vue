@@ -10,6 +10,13 @@
           </div>          
         </div>
 
+        <div class="col-md-6" style="width: auto;">
+          <div class="form-check form-switch">
+            <input class="form-check-input" v-model="with_format" type="checkbox" id="ck_with_format" value="">
+            <label class="form-check-label" for="ck_with_format">formatted</label>
+          </div>
+        </div>
+
         <div class="col-md-6" @click="cleanCheckbox()" style="cursor: pointer; width: auto;">
           <font-awesome-icon icon="minus-square" title="Clean"  style="cursor: pointer;" />  clean
         </div>
@@ -101,6 +108,7 @@
   import DateGroup from './DateGroup/Index.vue';
   import SystemGroup from './SystemGroup/Index.vue';
   import { checkboxStore } from '/src/Stores/checkboxStore.js';
+  import { stripPresentationMask } from '/src/Utils/stripPresentationMask.js';
 
   const TIME_RENEW_DATA = 30;
 
@@ -122,6 +130,7 @@
         content_copied: false,
         qt_sec_renew: null,
         clock_renew: false,
+        with_format: true,
         dataStore: dataStore(),
         checkboxStore: checkboxStore()
       };
@@ -197,6 +206,9 @@
        * @param {object} data
        */
        generate_data(data) {
+          if (!this.with_format) {
+            data.value = stripPresentationMask(data.field, data.value);
+          }
           // push the result to the array
           this.result_data_generate.push(data);
       },

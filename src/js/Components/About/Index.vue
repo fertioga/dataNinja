@@ -59,10 +59,6 @@
                             <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 30px !important;width: 110px !important;" >
                         </a>
                     </p>
-                    <p>
-                        PIX: <br>
-                        <img src="images/qr-code.png" alt="PIX">
-                    </p>
                 </div>
             </div>
             
